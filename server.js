@@ -11,6 +11,7 @@ const {PORT} = process.env;
 //creo la app de express
 
 const app = express();
+app.nombre = 'Ale';
 
 //aplico middlewares
 app.use(morgan('dev'));
