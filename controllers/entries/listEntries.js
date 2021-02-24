@@ -13,10 +13,10 @@ const listEntries =  async (req, res, next) => {
 
         if(search) {
             [results] = await connection.query (`
-            SELECT entries.id, entries.place, entries.date, avg(entries_votes.vote) AS votes
-            FROM entries INNER JOIN entries_votes ON (entries.id = entries_votes.entry_id)
+            SELECT entries.id, entries.place, entries.date, avg(IFNULL(entries_votes.vote,0)) AS votes
+            FROM entries LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
             WHERE entries.place LIKE ? OR entries.description LIKE ?
-            GROUP BY entries.id, entries.place, entries.date;
+            GROUP BY entries.id, entries.place, entries.date ORDER BY votes DESC;
             `,
             [`%${search}%`, `%${search}%`] 
             ); 
@@ -25,9 +25,9 @@ const listEntries =  async (req, res, next) => {
 
             //leo las entradas de la base de datos
             [results] = await connection.query (`
-                SELECT entries.id, entries.place, entries.date, avg(entries_votes.vote) AS votes
-                FROM entries INNER JOIN entries_votes ON (entries.id = entries_votes.entry_id)
-                GROUP BY entries.id, entries.place, entries.date;
+                SELECT entries.id, entries.place, entries.date, avg(IFNULL(entries_votes.vote,0)) AS votes
+                FROM entries LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
+                GROUP BY entries.id, entries.place, entries.date ORDER BY votes DESC;
             `);
         }
 
