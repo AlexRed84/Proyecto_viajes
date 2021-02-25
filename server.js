@@ -5,7 +5,11 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 
 //Cotroladores
-const { listEntries, getEntry, newEntry } = require("./controllers/entries");
+const { listEntries, 
+        getEntry,
+        newEntry,
+        editEntry, 
+} = require("./controllers/entries");
 
 const {PORT} = process.env;
 
@@ -42,25 +46,29 @@ app.get("/entries/:id", getEntry);
 //Crea una nueva entrada 
 app.post("/entries", newEntry);
 
+//PUT -/ entries/:id
+//edita una entra en la base de datos
+app.put("/entries/:id", editEntry);
+
 //Middleware de error
 app.use((error, req, res, next) => {
-    console.error(error);
-    res.status(error.httpStatus || 500).send({
-        status: "error",
-        message: error.message,
-    });
+        console.error(error);
+        res.status(error.httpStatus || 500).send({
+                status: "error",
+                message: error.message,
+        });
 });
 
 //Middleware de 404
 app.use((req, res) => {
-    res.status(404).send({
-        status: "error",
-        message: "Not found",
-    });
+        res.status(404).send({
+                status: "error",
+                message: "Not found",
+        });
 
 });
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor funcionando en http://localhost:${PORT} `);
+        console.log(`Servidor funcionando en http://localhost:${PORT} `);
 })

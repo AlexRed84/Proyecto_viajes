@@ -1,4 +1,4 @@
-const { image } = require('faker');
+//const { photos } = require('faker');
 const getDB = require('../../db');
 const { formatDateToDB, saveImage } = require("../../helpers");
 
@@ -58,7 +58,6 @@ try {
             }
             
         }
-
 
         //devuelvo en data un objeto que representa lo que acabo de insertar en la bbdd
     res.send({

@@ -1,6 +1,6 @@
-const { query } = require('express');
+//const { query } = require('express');
 const faker = require('faker');
-const {random} = require('lodash');
+const { random } = require('lodash');
 const getDB = require("./db");
 const { formatDateToDB } = require('./helpers.js');
 

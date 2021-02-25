@@ -4,4 +4,6 @@ const getEntry = require("./getEntry");
 
 const newEntry = require("./newEntry");
 
-module.exports = { listEntries, getEntry, newEntry };
+const editEntry = require("./editEntry");
+
+module.exports = { listEntries, getEntry, newEntry, editEntry };
