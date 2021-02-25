@@ -1,5 +1,6 @@
+const { image } = require('faker');
 const getDB = require('../../db');
-const { formatDateToDB } = require("../../helpers");
+const { formatDateToDB, saveImage } = require("../../helpers");
 
 const newEntry = async (req, res, next) => {
 let connection;
@@ -11,7 +12,7 @@ try {
     const{ place, description } = req.body;
 
     console.log(req.body);
-    console.log(req.files);
+    
 
     //si el campo place(unico obligatorio)no existe lanzo un error de bad request
     if(!place){
@@ -34,7 +35,29 @@ try {
     const {insertId} = result;
 
         //Procesar las imagenes
-        if(req.files)
+        const photos = [];
+
+        if(req.files && Object.keys(req.files).length > 0) {
+            //hay imagenes
+            for (const  photoData of Object.values(req.files).slice(
+                0,
+                3
+            )) {
+                
+               //Guardar la imagen y conseguir el nombre del fichero
+                const photoFile = await saveImage(photoData);
+
+                photos.push(photoFile);
+
+               //meter una nueva entrada en la tabla entries_photos
+               await connection.query(`
+                INSERT INTO entries_photos(uploadDate, photo, entry_id)
+                VALUES (?, ?, ?)
+
+               `,[formatDateToDB(now), photoFile,insertId]);
+            }
+            
+        }
 
 
         //devuelvo en data un objeto que representa lo que acabo de insertar en la bbdd
@@ -46,6 +69,7 @@ try {
            date:now,
            description,
            votes:0,
+           photos,
 
        },
     });
