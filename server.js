@@ -9,7 +9,12 @@ const { listEntries,
         getEntry,
         newEntry,
         editEntry, 
+        deleteEntry,
+        addEntryPhoto,
 } = require("./controllers/entries");
+
+//Middlewares del proyecto
+const entryExists = require("./middlewares/entryExists");
 
 const {PORT} = process.env;
 
@@ -40,7 +45,7 @@ app.get("/entries", listEntries);
 
 //GET -/entries:id
 //devuelve  una entrada solo
-app.get("/entries/:id", getEntry);
+app.get("/entries/:id",entryExists, getEntry);
 
 //POST -/Entries
 //Crea una nueva entrada 
@@ -48,7 +53,15 @@ app.post("/entries", newEntry);
 
 //PUT -/ entries/:id
 //edita una entra en la base de datos
-app.put("/entries/:id", editEntry);
+app.put("/entries/:id",entryExists, editEntry);
+
+//DELETE -/entries/:id
+//Borra una entrada de la base de datos
+app.delete("/entries/:id",entryExists, deleteEntry);
+
+//POST -/entries/:id/photos
+//añade una foto a una entrada
+app.post("/entries/:id/photos",entryExists, addEntryPhoto);
 
 //Middleware de error
 app.use((error, req, res, next) => {

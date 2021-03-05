@@ -25,10 +25,20 @@ const getEntry = async (req, res, next) => {
             error.httpStatus = 404;
             throw error;
         }
+
+        //sacamos las fotos de la entrada
+
+        const [photos] = await connection.query(
+            `SELECT photo, uploadDate FROM entries_photos WHERE entry_id=? 
+            `,[id]);
         
         res.send({
             status:"ok",
-            data: single,
+            data: {
+            ...single,
+            photos            
+            },
+                
         });
 
     }catch (error) {

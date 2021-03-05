@@ -2,15 +2,21 @@ const{ format } = require("date-fns");
 const sharp = require("sharp");
 const uuid = require("uuid");
 const path = require("path");
-const { ensureDir } = require("fs-extra");
+const { ensureDir, unlink } = require("fs-extra");
+const { fstat } = require("fs");
 
 function formatDateToDB(dateObjet) {
 
     return format(dateObjet, "yyyy-MM-dd HH:mm:ss")    
 }
 
+async function deletePhoto(photo) {
+    const photoPath = path.join(uploadsDir, photo);
 
-async function saveImage(imageData){
+    await unlink(photoPath);
+}
+
+async function savedPhoto(imageData){
     //imageData es el objeto con la informacion de la imagen
     const {UPLOADS_DIRECTORY} = process.env;
 
@@ -42,5 +48,6 @@ async function saveImage(imageData){
 
 module.exports = {
     formatDateToDB,
-    saveImage,
+     savedPhoto,
+    deletePhoto,
 };

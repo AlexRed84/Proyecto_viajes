@@ -6,4 +6,8 @@ const newEntry = require("./newEntry");
 
 const editEntry = require("./editEntry");
 
-module.exports = { listEntries, getEntry, newEntry, editEntry };
+const deleteEntry = require("./deleteEntry");
+
+const addEntryPhoto = require("./addEntryPhoto");
+
+module.exports = { listEntries, getEntry, newEntry, editEntry, deleteEntry, addEntryPhoto };

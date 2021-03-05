@@ -1,4 +1,4 @@
-const getDB = require("../../db");
+const getDB = require('../../db');
 const { formatDateToDB } = require("../../helpers");
 
 const editEntry = async (req, res, next) => {
@@ -13,7 +13,8 @@ const editEntry = async (req, res, next) => {
             `SELECT id FROM entries WHERE id=?`,
             [id]
             );
-
+            
+            //si no existe devolver un 404
         if (current.lenght === 0) {
             const error = new Error(
                 "No existe ninguna entrada en la base de datos con ese id"
@@ -21,9 +22,6 @@ const editEntry = async (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-
-        //si no existe devolver un 404
-
 
         //comprobar que los datos minimos vienen en el body
         const { date, place, description } = req.body;
@@ -43,8 +41,6 @@ const editEntry = async (req, res, next) => {
         );
 
         //Devolver una respuesta
-
-
 
         res.send({
 

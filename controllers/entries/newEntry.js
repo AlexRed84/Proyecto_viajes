@@ -1,6 +1,6 @@
 //const { photos } = require('faker');
 const getDB = require('../../db');
-const { formatDateToDB, saveImage } = require("../../helpers");
+const { formatDateToDB,  savedPhoto } = require("../../helpers");
 
 const newEntry = async (req, res, next) => {
 let connection;
@@ -45,7 +45,7 @@ try {
             )) {
                 
                //Guardar la imagen y conseguir el nombre del fichero
-                const photoFile = await saveImage(photoData);
+                const photoFile = await savedPhoto(photoData);
 
                 photos.push(photoFile);
 
