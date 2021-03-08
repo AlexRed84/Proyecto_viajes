@@ -11,9 +11,9 @@ function formatDateToDB(dateObjet) {
 }
 
 async function deletePhoto(photo) {
-    const photoPath = path.join(uploadsDir, photo);
+   const photoPath = path.join(photo);
 
-    await unlink(photoPath);
+   // await unlink(photoPath);
 }
 
 async function savedPhoto(imageData){

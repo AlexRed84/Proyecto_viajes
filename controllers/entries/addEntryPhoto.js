@@ -24,10 +24,12 @@ const addEntryPhoto = async (req, res, next) => {
                 throw error;
             }
 
+            let savePhoto;
+
 
             if (req.files && req.files.photo) {
                 //guardo la foto en el disco y saco el nombre con el que la guarde
-                const savePhoto = await savedPhoto(req.files.photo);
+                 savePhoto = await savedPhoto(req.files.photo);
                 
                 const now = new Date();
                 //meto en la tabla de entries_photos una nueva entrada
@@ -44,7 +46,7 @@ const addEntryPhoto = async (req, res, next) => {
             }
         res.send({
             status:"ok",
-            message: "Nueva foto subida"
+            message: savePhoto,
         });
 
     } catch (error) {

@@ -10,4 +10,17 @@ const deleteEntry = require("./deleteEntry");
 
 const addEntryPhoto = require("./addEntryPhoto");
 
-module.exports = { listEntries, getEntry, newEntry, editEntry, deleteEntry, addEntryPhoto };
+const deleteEntryPhoto = require("./deleteEntryPhoto");
+
+const voteEntry = require("./voteEntry");
+
+module.exports = { 
+    listEntries,
+    getEntry, 
+    newEntry, 
+    editEntry, 
+    deleteEntry, 
+    addEntryPhoto,
+    deleteEntryPhoto,
+    voteEntry,
+ };

@@ -11,6 +11,8 @@ const { listEntries,
         editEntry, 
         deleteEntry,
         addEntryPhoto,
+        deleteEntryPhoto,
+        voteEntry,
 } = require("./controllers/entries");
 
 //Middlewares del proyecto
@@ -62,6 +64,14 @@ app.delete("/entries/:id",entryExists, deleteEntry);
 //POST -/entries/:id/photos
 //añade una foto a una entrada
 app.post("/entries/:id/photos",entryExists, addEntryPhoto);
+
+//DELETE -/ENTRIES/:id/photos/:photoID
+//Borra una foto de una entrada
+app.delete("/entries/:id/photos/:photoID", entryExists, deleteEntryPhoto);
+
+//POST -/entries/:id/votes
+// vota una entrada
+app.post("/entries/:id/votes", entryExists,voteEntry);
 
 //Middleware de error
 app.use((error, req, res, next) => {

@@ -29,7 +29,7 @@ const getEntry = async (req, res, next) => {
         //sacamos las fotos de la entrada
 
         const [photos] = await connection.query(
-            `SELECT photo, uploadDate FROM entries_photos WHERE entry_id=? 
+            `SELECT id, photo, uploadDate FROM entries_photos WHERE entry_id=? 
             `,[id]);
         
         res.send({
