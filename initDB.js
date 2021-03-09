@@ -58,7 +58,7 @@ async function main() {
             //Introducir datos iniciales de prueba
 
             //Introducir varias entradas
-            const entries =10;
+            const entries =100;
 
             for (let index = 0; index < entries; index++){
                 const now = new Date();
@@ -73,14 +73,14 @@ async function main() {
 
            
             // Introducir varios votos
-                const votes = 100;
+                const votes = 500;
 
                 for(let index = 0; index < votes; index++){
                     const now = new Date();
 
                     await connection.query(`
                         INSERT INTO entries_votes(date, vote, entry_id)
-                        VALUES("${formatDateToDB(now)}",${random(1, 5)},${random(1, 10)})
+                        VALUES("${formatDateToDB(now)}",${random(1, 5)},${random(1, entries)})
                     `);
                 }
                 console.log("Datos de prueba introducidos en entries_votes");

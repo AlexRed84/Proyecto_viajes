@@ -1,3 +1,4 @@
+const { result } = require('lodash');
 const getDB = require('../../db');
 
 const listEntries =  async (req, res, next) => {
@@ -7,16 +8,27 @@ const listEntries =  async (req, res, next) => {
         connection = await getDB();
 
         //saco querystring
-        const { search } = req.query;
+        const { search, order, direction } = req.query;
+
+        const validOrderFields = ['place', 'date', 'votes'];
+        const validOrderDirection = ["DESC", "ASC"];
+
+        const orderBy = validOrderFields.includes(order) ? order :'votes';
+        const orderDirection = validOrderDirection.includes(direction)
+        ? direction
+        :"ASC";
+
+
 
         let results;
 
         if(search) {
             [results] = await connection.query (`
             SELECT entries.id, entries.place, entries.date, avg(IFNULL(entries_votes.vote,0)) AS votes
-            FROM entries LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
+            FROM entries 
+            LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
             WHERE entries.place LIKE ? OR entries.description LIKE ?
-            GROUP BY entries.id, entries.place, entries.date ORDER BY votes DESC;
+            GROUP BY entries.id, entries.place, entries.date
             `,
             [`%${search}%`, `%${search}%`] 
             ); 
@@ -25,19 +37,44 @@ const listEntries =  async (req, res, next) => {
 
             //leo las entradas de la base de datos
             [results] = await connection.query (`
-                SELECT entries.id, entries.place, entries.date, avg(IFNULL(entries_votes.vote,0)) AS votes
-                FROM entries LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
-                GROUP BY entries.id, entries.place, entries.date ORDER BY votes DESC;
-            `);
-        }
 
-       
+                SELECT entries.id, entries.place, entries.date, avg(IFNULL(entries_votes.vote,0)) AS votes
+                FROM entries 
+                LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
+                GROUP BY entries.id, entries.place, entries.date
+                ORDER BY ${orderBy} ${orderDirection};
+            `,);
+        }
+        //Saco las ids de los resultados
+
+       const ids = results.map((result) => result.id);
+
+       //Selecciono todas las fotos que tengan como entrada selecciona de una id de los resultados anterioros
+       const[photos] = await connection.query(
+           `
+            SELECT * FROM entries_photos WHERE entry_id IN (${ids.join(",")})
+           `);
+        //Junto en array de fotos resultante en la query anterior con los resultados
+        const resultsWithPhotos = results.map((result) => {
+
+            //fotos correspondientes al resultado(si hay, si no un array vacio)
+            const resultPhotos = photos.filter(
+            (photo) => photo.entry_id === result.id
+            );
+            //Devuelvo el resultado + el array de fotos
+
+                return {
+                    ...result,
+                    photos: resultPhotos,
+                };
+
+            });     
 
        
         //devuelvo un json con las entradas
         res.send({
             status: "ok",
-            data: results,
+            data: resultsWithPhotos,
         });
 
         
