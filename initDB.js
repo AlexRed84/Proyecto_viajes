@@ -1,4 +1,5 @@
 //const { query } = require('express');
+require("dotenv").config();
 const faker = require('faker');
 const { random } = require('lodash');
 const getDB = require("./db");
@@ -14,8 +15,28 @@ async function main() {
       await connection.query("DROP TABLE IF EXISTS entries");
       await connection.query("DROP TABLE IF EXISTS entries_photos");
       await connection.query("DROP TABLE IF EXISTS entries_votes");
+      await connection.query("DROP TABLE IF EXISTS users");
+      
 
       console.log("Tablas Borradas");
+
+
+      //crear tabla de usuarios
+
+      await connection.query(`
+      CREATE TABLE users (
+          id INT PRIMARY KEY AUTO_INCREMENT,
+          date DATETIME NOT NULL,
+          email VARCHAR(500) UNIQUE NOT NULL,
+          password VARCHAR(500) NOT NULL,
+          name VARCHAR(100),
+          avatar VARCHAR(50),
+          active BOOLEAN DEFAULT false,
+          role ENUM("admin", "normal") DEFAULT "normal" NOT NULL,
+          registrationCode VARCHAR(100)
+      )
+      
+      `);
 
         //Crear Tabla entries
         await connection.query(
@@ -23,7 +44,8 @@ async function main() {
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 date DATETIME NOT NULL,
                 place VARCHAR(100) NOT NULL,
-                description TEXT
+                description TEXT,
+                user_id INT NOT NULL
             );
         
         `);
@@ -57,33 +79,43 @@ async function main() {
 
             //Introducir datos iniciales de prueba
 
+            //introducir un usuario administrador
+            await connection.query(`
+            INSERT INTO users(date, email, password, name, active, role)
+            VALUES("${formatDateToDB(new Date())}","laleandro@gmail.com",SHA2(${process.env.ADMIN_PASSWORD}, 512),"Ale Rojas", true, "admin");    
+
+            `);
+            
+
+            //introducimos varios usuarios aleatorios
+
             //Introducir varias entradas
-            const entries =100;
+          //  const entries =100;
 
-            for (let index = 0; index < entries; index++){
-                const now = new Date();
+            //for (let index = 0; index < entries; index++){
+              //  const now = new Date();
 
-                await connection.query(`
-                INSERT INTO entries(date, place, description)
-                VALUES ("${formatDateToDB(now)}","${faker.address.city()}","${faker.lorem.paragraph()}")
-                
-                `);
-            }
-            console.log("Datos de prueba introducidos en entries");
+//                await connection.query(`
+  //              INSERT INTO entries(date, place, description)
+    //            VALUES ("${formatDateToDB(now)}","${faker.address.city()}","${faker.lorem.paragraph()}")
+      //          
+        //        `);
+          //  }
+            //console.log("Datos de prueba introducidos en entries");
 
            
             // Introducir varios votos
-                const votes = 500;
+              //  const votes = 500;
 
-                for(let index = 0; index < votes; index++){
-                    const now = new Date();
+                //for(let index = 0; index < votes; index++){
+                  //  const now = new Date();
 
-                    await connection.query(`
-                        INSERT INTO entries_votes(date, vote, entry_id)
-                        VALUES("${formatDateToDB(now)}",${random(1, 5)},${random(1, entries)})
-                    `);
-                }
-                console.log("Datos de prueba introducidos en entries_votes");
+                    //await connection.query(`
+                      //  INSERT INTO entries_votes(date, vote, entry_id)
+                        //VALUES("${formatDateToDB(now)}",${random(1, 5)},${random(1, entries)})
+                   // `);
+               // }
+                //console.log("Datos de prueba introducidos en entries_votes");
 
     } catch (error) {
         console.error(error);
