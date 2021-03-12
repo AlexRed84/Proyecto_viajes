@@ -7,7 +7,7 @@ const { fstat } = require("fs");
 const crypto = require("crypto");
 const sgMail = require("@sendgrid/mail");
 
-//configuro api sengrid
+//configuro api sendgrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 //Formatea un objeto de fecha a DATETIME de SQL
