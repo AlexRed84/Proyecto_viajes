@@ -50,18 +50,16 @@ const newUser = async (req, res, next) => {
         Te acabas de registrar en Atravesando España. 
         Pulsa en este link para validar tu email: ${process.env.PUBLIC_HOST}/users/validate/${registrationCode}
         `;
-
+                
         await sendMail({
             to: email,
-            subject: "Activa tu usuario",
+            subject: "Activa tu usuario ",
             body: emailBody,
-        });
-        
+          });
        
         //Meto el usuario en la base datos desactivado y con ese codigo de registro
         
         //Mando una respuesta
-
 
         res.send({
             message:"Registra un nuevo usuario",

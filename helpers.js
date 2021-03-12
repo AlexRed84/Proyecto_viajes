@@ -7,6 +7,9 @@ const { fstat } = require("fs");
 const crypto = require("crypto");
 const sgMail = require("@sendgrid/mail");
 
+//configuro api sengrid
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 //Formatea un objeto de fecha a DATETIME de SQL
 function formatDateToDB(dateObjet) {
 
@@ -25,8 +28,6 @@ async function savedPhoto(imageData){
 
     const uploadsDir = path.join(__dirname,UPLOADS_DIRECTORY);
 
-    //configuro api sengrid
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 //asegurarse que el directorio de subida de imagenes existe
     await ensureDir(uploadsDir);
@@ -55,29 +56,31 @@ async function savedPhoto(imageData){
 function generateRandomString(length) {
     return crypto.randomBytes(length).toString("hex");
 }
-
 async function sendMail({ to, subject, body }) {
-
-    try{
-        const msg = {
-            to,
-            from: process.env.SENDGRID_FROM, // use the mail adress or domain you verified above
-            subject,
-            text: body,
-            html: `
-            <div>
-                <h1>${subject}</h1>
-                <p>${body}</p>
-            </div>
-            `,
-        };
-    
-        await sgMail.send(msg);
-      } catch(error) {
-        throw new Error("Error enviando mail");
-
-      }
+    // Instrucciones: https://www.npmjs.com/package/@sendgrid/mail
+    try {
+      const msg = {
+        to,
+        from: process.env.SENDGRID_FROM, // Use the email address or domain you verified above
+        subject,
+        text: body,
+        html: `
+          <div>
+            <h1>${subject}</h1>
+            <p>${body}</p>
+          </div>
+        `,
+      };
+  
+      await sgMail.send(msg);
+    } catch (error) {
+      throw new Error("Error enviando mail");
     }
+  }
+
+        
+   
+
 
 module.exports = {
     formatDateToDB,
