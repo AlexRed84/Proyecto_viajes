@@ -24,11 +24,13 @@ const listEntries =  async (req, res, next) => {
 
         if(search) {
             [results] = await connection.query (`
-            SELECT entries.id, entries.place, entries.date, avg(IFNULL(entries_votes.vote,0)) AS votes
+
+            SELECT entries.id, entries.place, entries.date,entries.user_id, AVG(IFNULL(entries_votes.vote,0)) AS votes
             FROM entries 
             LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
             WHERE entries.place LIKE ? OR entries.description LIKE ?
-            GROUP BY entries.id, entries.place, entries.date
+            GROUP BY entries.id, entries.place, entries.date, entries.user_id
+            ORDER BY ${orderBy} ${orderDirection};
             `,
             [`%${search}%`, `%${search}%`] 
             ); 
@@ -36,15 +38,28 @@ const listEntries =  async (req, res, next) => {
         }else {
 
             //leo las entradas de la base de datos
-            [results] = await connection.query (`
+            [results] = await connection.query(`
 
-                SELECT entries.id, entries.place, entries.date, avg(IFNULL(entries_votes.vote,0)) AS votes
+                SELECT entries.id, entries.place, entries.date,entries.user_id, AVG(IFNULL(entries_votes.vote,0)) AS votes
                 FROM entries 
                 LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
-                GROUP BY entries.id, entries.place, entries.date
+                GROUP BY entries.id, entries.place, entries.date, entries.user_id
                 ORDER BY ${orderBy} ${orderDirection};
-            `,);
+            `);
         }
+
+
+        // if (result.lenght === 0) {
+        //     return res.send({
+        //         status:"ok",
+        //         data: [],
+        //     });
+        // }
+
+        let resultsWithPhotos = []
+
+        if (results.length > 0) {
+
         //Saco las ids de los resultados
 
        const ids = results.map((result) => result.id);
@@ -55,12 +70,15 @@ const listEntries =  async (req, res, next) => {
             SELECT * FROM entries_photos WHERE entry_id IN (${ids.join(",")})
            `);
         //Junto en array de fotos resultante en la query anterior con los resultados
-        const resultsWithPhotos = results.map((result) => {
+        resultsWithPhotos = results.map((result) => {
 
             //fotos correspondientes al resultado(si hay, si no un array vacio)
             const resultPhotos = photos.filter(
             (photo) => photo.entry_id === result.id
             );
+
+        
+     
             //Devuelvo el resultado + el array de fotos
 
                 return {
@@ -68,7 +86,11 @@ const listEntries =  async (req, res, next) => {
                     photos: resultPhotos,
                 };
 
-            });     
+            });  
+            
+        
+
+        }
 
        
         //devuelvo un json con las entradas

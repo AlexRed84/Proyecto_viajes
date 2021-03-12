@@ -4,23 +4,29 @@ const uuid = require("uuid");
 const path = require("path");
 const { ensureDir, unlink } = require("fs-extra");
 const { fstat } = require("fs");
+const crypto = require("crypto");
+const sgMail = require("@sendgrid/mail");
 
+//Formatea un objeto de fecha a DATETIME de SQL
 function formatDateToDB(dateObjet) {
 
     return format(dateObjet, "yyyy-MM-dd HH:mm:ss")    
 }
-
+//borrra un fichero en el directorio de subida
 async function deletePhoto(photo) {
    const photoPath = path.join(photo);
 
    // await unlink(photoPath);
 }
-
+//guarda una foto en upload
 async function savedPhoto(imageData){
     //imageData es el objeto con la informacion de la imagen
     const {UPLOADS_DIRECTORY} = process.env;
 
     const uploadsDir = path.join(__dirname,UPLOADS_DIRECTORY);
+
+    //configuro api sengrid
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 //asegurarse que el directorio de subida de imagenes existe
     await ensureDir(uploadsDir);
@@ -45,9 +51,38 @@ async function savedPhoto(imageData){
 //devolver el nombre del fichero
     return savedImageName;
 }
+//genera una cadena de caracteres aleatorio
+function generateRandomString(length) {
+    return crypto.randomBytes(length).toString("hex");
+}
+
+async function sendMail({ to, subject, body }) {
+
+    try{
+        const msg = {
+            to,
+            from: process.env.SENDGRID_FROM, // use the mail adress or domain you verified above
+            subject,
+            text: body,
+            html: `
+            <div>
+                <h1>${subject}</h1>
+                <p>${body}</p>
+            </div>
+            `,
+        };
+    
+        await sgMail.send(msg);
+      } catch(error) {
+        throw new Error("Error enviando mail");
+
+      }
+    }
 
 module.exports = {
     formatDateToDB,
-     savedPhoto,
+    savedPhoto,
     deletePhoto,
+    generateRandomString,
+    sendMail,
 };

@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 
-//Cotroladores
+//Cotroladores de entradas
 const { listEntries, 
         getEntry,
         newEntry,
@@ -14,6 +14,12 @@ const { listEntries,
         deleteEntryPhoto,
         voteEntry,
 } = require("./controllers/entries");
+
+//Controladores de usuarios
+
+const {
+        newUser
+} = require("./controllers/users");
 
 //Middlewares del proyecto
 const entryExists = require("./middlewares/entryExists");
@@ -40,6 +46,10 @@ app.use(fileUpload());
 
 
 //Rutas de la API
+
+/* 
+        Rutas de Entradas
+*/
 
 //GET -/entries
 //Devuelve todos los elementos de la tabla entries
@@ -72,6 +82,14 @@ app.delete("/entries/:id/photos/:photoID", entryExists, deleteEntryPhoto);
 //POST -/entries/:id/votes
 // vota una entrada
 app.post("/entries/:id/votes", entryExists,voteEntry);
+
+
+/*
+        Rutas de Usuarios
+*/
+
+app.post("/users", newUser);
+
 
 //Middleware de error
 app.use((error, req, res, next) => {
