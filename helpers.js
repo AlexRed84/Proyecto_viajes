@@ -58,28 +58,28 @@ function generateRandomString(length) {
 }
 async function sendMail({ to, subject, body }) {
     // Instrucciones: https://www.npmjs.com/package/@sendgrid/mail
+  
     try {
-      const msg = {
+        const msg = {
         to,
         from: process.env.SENDGRID_FROM, // Use the email address or domain you verified above
         subject,
         text: body,
         html: `
-          <div>
-            <h1>${subject}</h1>
-            <p>${body}</p>
-          </div>
+            <div>
+                <h1>${subject}</h1>
+                <p>${body}</p>
+            </div>
         `,
-      };
-  
-      await sgMail.send(msg);
-    } catch (error) {
-      throw new Error("Error enviando mail");
-    }
-  }
+    };
 
-        
-   
+        await sgMail.send(msg);
+    }   catch (error) {
+        throw new Error("Error enviando mail");
+    }
+}
+
+
 
 
 module.exports = {

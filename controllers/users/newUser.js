@@ -55,8 +55,8 @@ const newUser = async (req, res, next) => {
             to: email,
             subject: "Activa tu usuario ",
             body: emailBody,
-          });
-       
+        });
+
         //Meto el usuario en la base datos desactivado y con ese codigo de registro
         
         //Mando una respuesta
