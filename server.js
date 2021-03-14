@@ -18,7 +18,9 @@ const { listEntries,
 //Controladores de usuarios
 
 const {
-        newUser
+        newUser,
+        validateUser,
+        loginUser
 } = require("./controllers/users");
 
 //Middlewares del proyecto
@@ -41,9 +43,6 @@ app.use(bodyParser.json());
 
 //Body parser multipart form data <--subida de imagenes
 app.use(fileUpload());
-
-
-
 
 //Rutas de la API
 
@@ -87,8 +86,17 @@ app.post("/entries/:id/votes", entryExists,voteEntry);
 /*
         Rutas de Usuarios
 */
-
+//POST -/users
+//Registra un nuevo usuario(sin validar)
 app.post("/users", newUser);
+
+//GET -/users/validate/:registrationCode
+//Registra un usuario que se acaba de registrar
+app.get("/users/validate/:registrationCode", validateUser);
+
+//POST -/ users/login
+//Hace login de un usuario
+app.post("/users/login", loginUser);
 
 
 //Middleware de error

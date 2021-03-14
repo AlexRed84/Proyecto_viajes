@@ -58,13 +58,23 @@ const newUser = async (req, res, next) => {
         });
 
         //Meto el usuario en la base datos desactivado y con ese codigo de registro
-        
+
+        await connection.query (
+            `
+            INSERT INTO users(date, email, password, registrationCode)
+            VALUES(?,?,SHA2(?, 512),?)
+        `,
+        [new Date(), email, password, registrationCode]    
+        );
+            
         //Mando una respuesta
 
         res.send({
-            message:"Registra un nuevo usuario",
-        });
+            status:"ok",
+            message:"Usuario Registrado,comprueba tu email para activarlo",
+        })
 
+       
     } catch (error) {
         next(error);
         
