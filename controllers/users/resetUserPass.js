@@ -1,6 +1,6 @@
 const getDB = require("../../db");
 
-const resetUserPassword = async (req, res, next) => {
+const resetUserPass = async (req, res, next) => {
 let connection;
 
 try {
@@ -58,4 +58,4 @@ try {
 }
 };
 
-module.exports = resetUserPassword;
+module.exports = resetUserPass;

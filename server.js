@@ -26,7 +26,7 @@ const {
         editUser,
         editUserPass,
         recoverUserPass,
-        resetUserPassword
+        resetUserPass
 } = require("./controllers/users");
 
 //Middlewares del proyecto
@@ -130,7 +130,7 @@ app.post("/users/recover-password", recoverUserPass);
 
 //POST -/users/reset-password
 //Cambiar la contraseña de un usuario
-app.post("/users/reset-password", resetUserPassword);
+app.post("/users/reset-password", resetUserPass);
 
 
 //Middleware de error

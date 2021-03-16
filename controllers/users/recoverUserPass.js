@@ -1,7 +1,7 @@
 const getDB = require("../../db");
 const { generateRandomString, sendMail } = require("../../helpers");
 
-const recorverUserPassword = async (req, res, next) => {
+const recorverUserPass = async (req, res, next) => {
 let connection;
 
 try {
@@ -77,4 +77,4 @@ try {
 }
 };
 
-module.exports = recorverUserPassword;
+module.exports = recorverUserPass;
