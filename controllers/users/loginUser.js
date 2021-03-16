@@ -40,7 +40,7 @@ const loginUser = async (req, res, next) => {
             error.httpStatus = 401;
             throw error;
         }
-        //Si existe pero no esta activo avisamos de que esta pendiente de activar
+        //Si existe pero no esta activo, avisamos de que esta pendiente de activar
 
         if(!user[0].active) { // (me da un error, revisar con BERTO)
             const error = new Error(
@@ -51,7 +51,8 @@ const loginUser = async (req, res, next) => {
         }
 
         //Asumimos que el login es correcto        
-        //Creo el objeto de informacion que irá en el token
+
+        //Creo el objeto de informaciòn que irá en el token
         const info = {
             id:user[0].id,
             role:user[0].role,

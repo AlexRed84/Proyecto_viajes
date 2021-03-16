@@ -31,9 +31,12 @@ async function main() {
           password VARCHAR(512) NOT NULL,
           name VARCHAR(100),
           avatar VARCHAR(50),
+          deleted BOOLEAN DEFAULT false,
           active BOOLEAN DEFAULT false,
           role ENUM("admin", "normal") DEFAULT "normal" NOT NULL,
-          registrationCode VARCHAR(100)
+          registrationCode VARCHAR(100),
+          lastAuthUpdate DATETIME,
+          recoverCode VARCHAR(100)
       )
       
       `);

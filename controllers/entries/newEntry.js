@@ -25,11 +25,11 @@ try {
     //ejecuto la insercion en la base de datos
     const [result] = await connection.query(
         `
-        INSERT INTO entries (date, place, description)
-        VALUES(?, ?, ?);
+        INSERT INTO entries (date, place, description, user_id)
+        VALUES(?, ?, ?, ?);
         
         `,
-        [formatDateToDB(now), place, description]
+        [formatDateToDB(now), place, description, req.userAuth.id]
     );
         //saco la id de la fila insertada
     const {insertId} = result;
@@ -64,6 +64,7 @@ try {
        status:"ok",
        data: {
            id: insertId,
+           user_id:req.userAuth.id,
            place,
            date:now,
            description,

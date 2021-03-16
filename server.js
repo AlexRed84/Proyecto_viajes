@@ -20,11 +20,21 @@ const { listEntries,
 const {
         newUser,
         validateUser,
-        loginUser
+        loginUser,
+        getUser,
+        deleteUser,
+        editUser,
+        editUserPass,
+        recoverUserPass,
+        resetUserPassword
 } = require("./controllers/users");
 
 //Middlewares del proyecto
 const entryExists = require("./middlewares/entryExists");
+const userExists = require("./middlewares/userExists");
+const isUser = require("./middlewares/isUser");
+const canEdit = require("./middlewares/canEdit");
+
 
 const {PORT} = process.env;
 
@@ -60,15 +70,15 @@ app.get("/entries/:id",entryExists, getEntry);
 
 //POST -/Entries
 //Crea una nueva entrada 
-app.post("/entries", newEntry);
+app.post("/entries", isUser, newEntry);
 
 //PUT -/ entries/:id
 //edita una entra en la base de datos
-app.put("/entries/:id",entryExists, editEntry);
+app.put("/entries/:id",isUser,entryExists,canEdit, editEntry);
 
 //DELETE -/entries/:id
 //Borra una entrada de la base de datos
-app.delete("/entries/:id",entryExists, deleteEntry);
+app.delete("/entries/:id",entryExists, canEdit,deleteEntry);
 
 //POST -/entries/:id/photos
 //añade una foto a una entrada
@@ -80,7 +90,7 @@ app.delete("/entries/:id/photos/:photoID", entryExists, deleteEntryPhoto);
 
 //POST -/entries/:id/votes
 // vota una entrada
-app.post("/entries/:id/votes", entryExists,voteEntry);
+app.post("/entries/:id/votes", isUser, entryExists,voteEntry);
 
 
 /*
@@ -97,6 +107,30 @@ app.get("/users/validate/:registrationCode", validateUser);
 //POST -/ users/login
 //Hace login de un usuario
 app.post("/users/login", loginUser);
+
+//GET -/users/:id
+//Muestra info usuarios
+app.get("/users/:id", isUser,userExists,getUser);
+
+//DELETE -/users/:id
+//Oculta un usuario
+app.delete("/users/:id", isUser,userExists,deleteUser);
+
+//PUT -/users/:id
+//Edita los datos de un usuario
+app.put("/users/:id", isUser, userExists,editUser);
+
+//PUT -/users/:id/password
+//Edita la contraseña de un usuario
+app.put("/users/:id/password", isUser, userExists, editUserPass);
+
+//POST -/users/recoverPassword
+//Enviar un correo con el codigo de reseteo de contraseña a un mail
+app.post("/users/recover-password", recoverUserPass);
+
+//POST -/users/reset-password
+//Cambiar la contraseña de un usuario
+app.post("/users/reset-password", resetUserPassword);
 
 
 //Middleware de error
@@ -119,5 +153,5 @@ app.use((req, res) => {
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-        console.log(`Servidor funcionando en http://localhost:${PORT} `);
+        console.log(`Servidor funcionando en http://localhost:${PORT}🚀🚀`);
 })
