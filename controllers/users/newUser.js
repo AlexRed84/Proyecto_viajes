@@ -1,5 +1,6 @@
 const getDB = require("../../db");
-const {generateRandomString,sendMail} = require("../../helpers");
+const {generateRandomString,sendMail, validate} = require("../../helpers");
+const { registrationSchema } = require("../../Schemas");
 
 const newUser = async (req, res, next) => {
     let connection;
@@ -7,17 +8,20 @@ const newUser = async (req, res, next) => {
     try {
         connection = await getDB();
 
+        await validate(registrationSchema, req.body);
+
+
         //Recojo de req.body el email y la password
 
         const {email, password} = req.body;
 
-        //Compruebo que no esten vacios
+        // //Compruebo que no esten vacios
 
-        if(!email || !password) {
-            const error = new Error("Faltan campos");
-            error.httpStatus = 400;
-            throw error;
-        }
+        // if(!email || !password) {
+        //     const error = new Error("Faltan campos");
+        //     error.httpStatus = 400;
+        //     throw error;
+        // }
 
         //Compruebo que no exista un usuario con ese mail en la BBDD
 

@@ -21,7 +21,7 @@ async function main() {
       console.log("Tablas Borradas");
 
 
-      //crear tabla de usuarios
+      //tabla de usuarios
 
       await connection.query(`
       CREATE TABLE users (
@@ -41,7 +41,7 @@ async function main() {
       
       `);
 
-        //Crear Tabla entries
+        //Tabla entradas
         await connection.query(
             `CREATE TABLE entries (
                 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -53,18 +53,18 @@ async function main() {
         
         `);
 
-        //Crear tabla entries_photos
+        // tabla entradas fotos
         await connection.query(`
               CREATE TABLE entries_photos (
                   id INT PRIMARY KEY AUTO_INCREMENT,
                   uploadDate DATETIME NOT NULL,
                   photo VARCHAR(50) NOT NULL,
                   entry_id INT NOT NULL
-             );
-         `);
+            );
+        `);
 
-         
-        //Crear la tabla entries_votes
+        
+        //tabla entradas votos
         await connection.query(`
             CREATE TABLE entries_votes (
                 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -99,25 +99,25 @@ async function main() {
 
              //introducimos varios usuarios aleatorios
 
-             const users = 10;
+            const users = 10;
 
-             for(let index = 0; index < users; index++) {
+            for(let index = 0; index < users; index++) {
 
               const now = new Date();
               const email = faker.internet.email();
               const password = faker.internet.password();
               const name = faker.name.findName();
 
-               await connection.query(`
-               INSERT INTO users(date, email, password, name, active)
-               VALUES("${formatDateToDB(now)}","${email}",SHA2("${password}",512),"${name}",true)
-               `);
-             }
+              await connection.query(`
+              INSERT INTO users(date, email, password, name, active)
+              VALUES("${formatDateToDB(now)}","${email}",SHA2("${password}",512),"${name}",true)
+              `);
+            }
 
             //Introducir varias entradas
-           const entries =100;
+          const entries =100;
 
-           for (let index = 0; index < entries; index++){
+          for (let index = 0; index < entries; index++){
             const now = new Date();
 
               await connection.query(`
@@ -126,11 +126,11 @@ async function main() {
                 2, 
                 users + 1
                 )})
-             `);
+            `);
             }
-            console.log("Datos de prueba introducidos en entries");
+            console.log("Datos de prueba introducidos en Entradas");
 
-           
+          
             // Introducir varios votos
               const votes = 500;
 
@@ -144,7 +144,7 @@ async function main() {
 
                       `);
                 }
-                console.log("Datos de prueba introducidos en entries_votes"); 
+                console.log("Datos de prueba introducidos en Entrada de Votos"); 
 
     } catch (error) {
         console.error(error);

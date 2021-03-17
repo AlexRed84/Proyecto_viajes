@@ -1,27 +1,24 @@
 //const { photos } = require('faker');
 const getDB = require('../../db');
-const { formatDateToDB,  savedPhoto } = require("../../helpers");
+const { formatDateToDB,  savedPhoto, validate } = require("../../helpers");
+const { newEntrySchema } = require("../../Schemas");
 
 const newEntry = async (req, res, next) => {
 let connection;
 
 try {
-    //saco los campos necesarios de req.body
+    //conexion a la bbdd
     connection = await getDB();
-        
+
+    //valido los datos
+    await validate(newEntrySchema, req.body);
+
+     //saco los campos necesarios de req.body   
     const{ place, description } = req.body;
 
-    console.log(req.body);
-    
-
-    //si el campo place(unico obligatorio)no existe lanzo un error de bad request
-    if(!place){
-        const error = new Error("El campo 'place' es obligatorio"); 
-        error.httpStatus = 400;
-        throw error;
-    }
     //creo un objeto con la fecha actual
     const now = new Date();
+    
     //ejecuto la insercion en la base de datos
     const [result] = await connection.query(
         `
