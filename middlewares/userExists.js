@@ -16,7 +16,7 @@ const userExists = async (req, res, next) => {
         [id]
         );
 
-        if (result.lenght === 0) {
+        if (result.length === 0) {
             const error = new Error(" Usuario no encontrado");
             error.httpStatus = 404;
             throw error;

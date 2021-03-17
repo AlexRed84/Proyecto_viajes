@@ -62,7 +62,7 @@ const editUser = async (req, res, next) => {
         [email]
         );    
 
-        if(existingEmail.lenght > 0) {
+        if(existingEmail.length > 0) {
             const error = new Error("Ya existe un usuario con ese email");
             error.httpStatus = 409;
             throw error;

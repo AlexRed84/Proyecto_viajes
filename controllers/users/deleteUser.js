@@ -13,7 +13,7 @@ const deleteUser = async (req, res, next) => {
 
         //Si la id es igual a 1 dará error
         if(Number(id) === 1) {
-            const error = new Error ("El administrador principar no se puede borrar");
+            const error = new Error ("El administrador principal no se puede borrar");
             error.httpStatus = 403;
             throw error;
         }
@@ -30,7 +30,7 @@ const deleteUser = async (req, res, next) => {
         await connection.query(
             `
             UPDATE users
-            SET password=?, name="[borrado]", active=0, deleted=1,lastAuthUpdate=?
+            SET password=?, email="[borrado]", name="[borrado]", active=0, deleted=1,lastAuthUpdate=?
             WHERE id=?
 
             `,

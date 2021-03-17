@@ -20,7 +20,7 @@ const deleteEntryPhoto = async (req, res, next) => {
         );
 
         //si la foto no existe , devuelvo un error
-        if(current.lenght === 0){
+        if(current.length === 0){
             const error = new Error("La foto no existe");
             error.httpStatus = 404;
             throw error;

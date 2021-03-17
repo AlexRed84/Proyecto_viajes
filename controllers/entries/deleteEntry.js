@@ -15,7 +15,7 @@ const deleteEntry = async (req, res, next) =>  {
         [id]);
             
             //si no existe devolver un 404
-        if (current.lenght === 0) {
+        if (current.length === 0) {
             const error = new Error(
                 "No existe ninguna entrada en la base de datos con ese id"
             );

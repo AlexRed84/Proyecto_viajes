@@ -16,7 +16,7 @@ const entryExists = async (req, res, next) => {
         [id]
         );
 
-        if (result.lenght === 0) {
+        if (result.length === 0) {
             const error = new Error(" Entrada no encontrada");
             error.httpStatus = 404;
             throw error;

@@ -18,7 +18,7 @@ const addEntryPhoto = async (req, res, next) => {
             );
 
             //si tiene 3 o mas fotos lanzo un error.
-            if(currentPhotos.lenght >= 3) {
+            if(currentPhotos.length >= 3) {
                 const error = new Error("No puedes subir mas fotos a esta entrada, ya tiene 3");
                 error.httpStatus = 403;
                 throw error;

@@ -23,7 +23,7 @@ const validateUser = async (req, res, next) => {
 
         // Y si no lo hay dar un error
 
-        if(user.lenght === 0) {
+        if(user.length === 0) {
             const error = new Error("No hay ningùn usuario pendiente de validar con ese código");
             error.httpStatus = 404;
             throw error;

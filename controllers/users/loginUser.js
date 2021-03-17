@@ -35,7 +35,7 @@ const loginUser = async (req, res, next) => {
 
         //Si no existe asumimos que el mail o pass son incorrectos y damos error
 
-        if(user.lenght === 0) {
+        if(user.length === 0) {
             const error = new Error("El email o la password son incorrectos");
             error.httpStatus = 401;
             throw error;

@@ -49,7 +49,7 @@ const listEntries =  async (req, res, next) => {
         }
 
 
-        // if (result.lenght === 0) {
+        // if (result.length === 0) {
         //     return res.send({
         //         status:"ok",
         //         data: [],

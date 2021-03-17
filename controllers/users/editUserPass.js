@@ -14,7 +14,7 @@ const editUserPass = async (req, res, next) => {
         const { oldPassword, newPassword } = req.body;
 
         //Comprobamos que la nueva contraseña tenga al menos 8 caracteres
-        if(newPassword.lenght < 8) {
+        if(newPassword.length < 8) {
             const error = new Error("La nueva contraseña es muy corta ");
             error.httpStatus = 400;
             throw error;
@@ -37,7 +37,7 @@ const editUserPass = async (req, res, next) => {
             [id, oldPassword]
             );
 
-            if(current.lenght === 0) {
+            if(current.length === 0) {
                 const error = new Error("La contraseña antigua no es correcta");
                 error.httpStatus = 401;
                 throw error;
