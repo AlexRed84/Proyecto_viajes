@@ -10,6 +10,9 @@ const sgMail = require("@sendgrid/mail");
 //configuro api sendgrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+const {UPLOADS_DIRECTORY} = process.env;
+
+const uploadsDir = path.join(__dirname,UPLOADS_DIRECTORY);
 //Formatea un objeto de fecha a DATETIME de SQL
 function formatDateToDB(dateObjet) {
 
@@ -17,16 +20,14 @@ function formatDateToDB(dateObjet) {
 }
 //borrra un fichero en el directorio de subida
 async function deletePhoto(photo) {
-   const photoPath = path.join(photo);
+   const photoPath = path.join(uploadsDir ,photo);
 
-   // await unlink(photoPath);
+   await unlink(photoPath);
 }
 //guarda una foto en upload
 async function savedPhoto(imageData){
     //imageData es el objeto con la informacion de la imagen
-    const {UPLOADS_DIRECTORY} = process.env;
-
-    const uploadsDir = path.join(__dirname,UPLOADS_DIRECTORY);
+   
 
 
 //asegurarse que el directorio de subida de imagenes existe
