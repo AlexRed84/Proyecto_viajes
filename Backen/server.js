@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
+const cors = require("cors");
 
 //Cotroladores de entradas
 const { listEntries, 
@@ -53,6 +54,9 @@ app.use(bodyParser.json());
 
 //Body parser multipart form data <--subida de imagenes
 app.use(fileUpload());
+
+//uso de cors
+app.use(cors());
 
 //Rutas de la API
 

@@ -1,20 +1,15 @@
 import { useForm } from "react-hook-form";
+import { login } from '../http/api';
 
-const apiUrl = 'http://192.168.18.32:3000/users/login';
 
 export default function Login(params) {
-const {handleSubmit, register} = useForm()
+const { handleSubmit, register } = useForm()
 
 const loginSubmit = async (loginData) => {
-const headers=new Headers({'Content-Type':'application/json'})    
-const response = await fetch(`${apiUrl}/users/login`, 
-{method: 'POST',
-headers: headers, 
-body: JSON.stringify(loginData),
-});
-const data = await response.json();
-console.log(data);
 
+const response = await login(loginData);
+const data = await response.json();
+console.log(response.status, data);
 
 };
 
