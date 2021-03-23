@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
-import { login } from '../http/api';
+import useAuth from "../shared/hooks/useAuth";
+
 
 
 export default function Login(params) {
-const { handleSubmit, register } = useForm()
+const { handleSubmit, register } = useForm();
+
+const { signIn, setTestData } = useAuth();
 
 const loginSubmit = async (loginData) => {
-
-const response = await login(loginData);
-const data = await response.json();
-console.log(response.status, data);
+  setTestData(['Rutas', 'Contacto']);
+  signIn(loginData);
 
 };
 
@@ -22,6 +23,7 @@ console.log(response.status, data);
     <label htmlFor="password">password</label>
 
     <input id="password" name="password" type="password" ref={register()} />
+
     
     <input type="submit" />    
     
