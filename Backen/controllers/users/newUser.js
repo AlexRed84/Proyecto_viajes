@@ -51,7 +51,7 @@ const newUser = async (req, res, next) => {
 
         const emailBody = `
 
-        Te acabas de registrar en Atravesando España. 
+        Te acabas de registrar en Roling Road. 
         Pulsa en este link para validar tu email: ${process.env.PUBLIC_HOST}/users/validate/${registrationCode}
         `;
                 

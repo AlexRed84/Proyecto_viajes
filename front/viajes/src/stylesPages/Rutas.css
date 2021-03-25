@@ -1,0 +1,12 @@
+body{
+background-image: url('../images/rutas.jpg');
+height: 100vh;
+background-position: center;
+background-repeat: no-repeat;
+background-size:cover;
+position: relative;
+z-index: 99;
+}
+
+
+

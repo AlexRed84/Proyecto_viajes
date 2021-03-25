@@ -39,7 +39,7 @@ try {
     // Enviar por mail el código de recuperación
     // Mando un mail al usuario con el link de confirmación de email
     const emailBody = `
-        Se solicitó un cambio de contraseña para el usuario registrado con este email en la app Rodando por la Tierra.
+        Se solicitó un cambio de contraseña para el usuario registrado con este email en la app Roling Road.
         
         El código de recuperación es: ${recorverCode} 
 
@@ -59,7 +59,7 @@ try {
 
     await sendMail({
     to: email,
-    subject: "Cambio de contraseña en Rodando por la Tierra",
+    subject: "Cambio de contraseña en Roling Road",
     body: emailBody,
     });
 

@@ -73,7 +73,7 @@ const editUser = async (req, res, next) => {
         //Mando un mail al usuario con link de confirmacion
         const emailBody = 
         `
-        Acabas de modificar tu email en la app Rodando por la Tierra.
+        Acabas de modificar tu email en la app Roling Road.
         Pulsa en este link para validar tu nuevo email: ${process.env.PUBLIC_HOST}/users/validate/${registrationCode}
         `;
 

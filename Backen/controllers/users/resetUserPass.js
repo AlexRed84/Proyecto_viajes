@@ -9,7 +9,7 @@ try {
     // Sacar de req.body los campos recoverCode y newPassword
     const { recoverCode, newPassword } = req.body;
 
-    // Si alguno de eses campos está vacío devolver un error
+    // Si alguno de esos campos está vacío devolver un error
     if (!recoverCode || !newPassword || newPassword.length < 8) {
     const error = new Error(
         "Faltan campos o la nueva contraseña es muy corta"
