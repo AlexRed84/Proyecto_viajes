@@ -11,7 +11,7 @@ export default function Register(props) {
 
   const onSubmit = async (data) => {
     try {
-      const serverResponse = await props.onSubmit(data.email, data.password, data.confirmPassword);
+      const serverResponse = await props.onSubmit(data.email, data.password);
       if (errorMessage.length > 0) {
         setErrorMessage('');
       }

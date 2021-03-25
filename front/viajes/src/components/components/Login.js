@@ -9,7 +9,7 @@ export default function LoginForm(props) {
 
   const onSubmit = async (data) => {
     try {
-      const serverResponse = await props.onSubmit(data.email, data.password, data.confirmPassword, data.cbox1);
+      const serverResponse = await props.onSubmit(data.email, data.password, data.cbox1);
       if (errorMessage.length > 0) {
         setErrorMessage('');
       }

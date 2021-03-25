@@ -21,7 +21,7 @@ function App() {
         <Header></Header>
         <Switch>
           <Route exact path="/">
-            <Home></Home>
+             <Home></Home>
             <Footer></Footer>
           </Route>
           <Route exact path="/login">
@@ -56,14 +56,12 @@ function App() {
               </UserProfile>
             </AuthUser>
           </Route>
-          <Route exact path="/profile">
-            <AuthUser>
-              <UserProfile>
-                
+          <Route exact path="/profile/:id">
+            <UserProfile>
+              <Profile></Profile>
                 <Footer></Footer>
               </UserProfile>
-            </AuthUser>
-          </Route>
+                </Route>
           <Route exact path="/Rutas">
             <Rutas></Rutas>
             <Footer></Footer>

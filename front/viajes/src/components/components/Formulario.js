@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import BackgroundVideo from './BackgroundVideo';
 
 export default function AuthForm(props) {
   const { handleSubmit } = useForm();
@@ -7,12 +8,13 @@ export default function AuthForm(props) {
   return (
     <div>
       <div>
-        <div className="back">
+      <BackgroundVideo />
+        {/* <div className="back">
           <div className="info">
             <h1>Roling Road</h1>
             <h2>...Rodando con los Sueños</h2>
           </div>
-        </div>
+        </div> */}
         <div className="formulario">
           <div className="formulario-square">
             <div className="square">

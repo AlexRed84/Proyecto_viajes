@@ -115,8 +115,15 @@ export async function newRoute(data, id) {
     body,
   });
 }
-export async function getProductsPosted(id) {
+export async function getRoutePosted(id) {
   const userDat = await fetchb2bApi(`/profile/${id}/entries`, {
+    method: requestMethods.get,
+  });
+  console.log(userDat);
+  return userDat;
+}
+export async function getListEntries() {
+  const userDat = await fetchb2bApi(`/entries`, {
     method: requestMethods.get,
   });
   console.log(userDat);
