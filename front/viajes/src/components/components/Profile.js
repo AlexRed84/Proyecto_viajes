@@ -59,7 +59,7 @@ export default function Profile(props) {
             <p className=" op2">☰</p>
             <div className="dropdown-content">
               <Link to={`/profile/${userData?.id}`}>Información personal</Link>
-              <Link to={`/profile/${userData?.id}/newRoute`}>Añadir Ruta</Link>
+              <Link to={`/profile/${userData?.id}/entries`}>Añadir Ruta</Link>
               <Link Link to={`/profile/${userData?.id}/users`}>
                 Productos publicados
               </Link>

@@ -18,7 +18,7 @@
   width: 35%;
   height: 70%;
   position: absolute;
-  background-color: rgb(202, 247, 165);
+  background-color: rgb(156, 115, 61);
   opacity: 75%;
   top: 50%;
   left: 50%;
@@ -76,7 +76,8 @@
   background-color: #ffffff;
   transition: 0.5s ease-in;
 }
-h1 {
+h1{
+  color: #000000;
   margin: 2rem;
   text-align: center;
 }

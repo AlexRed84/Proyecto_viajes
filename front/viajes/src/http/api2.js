@@ -75,10 +75,10 @@ export async function deleteRoute(id, id_route) {
     method: requestMethods.delete,
   });
 }
-export async function login(email, password, confirmPassword) {
+export async function login(email, password,) {
   const tokenData = await fetchb2bApi(endPoints.login, {
     method: requestMethods.post,
-    body: { email, password, confirmPassword },
+    body: { email, password, },
   });
   const token = tokenData.data.token;
   localStorage.setItem('token', token);

@@ -1,13 +1,6 @@
-// import React from 'react';
-// import '../stylesPages/Rutas.css';
-
-// export default function Rutas() {
-//     return <h1 className='rutas()'>RUTAS</h1>;
-
-//     }
-    
 import {getListEntries} from '../http/api2';
 import React, { useEffect, useState } from 'react';
+import '../stylesPages/Rutas.css';
 
 const App = () => {
 const [data, setData] = useState(null)

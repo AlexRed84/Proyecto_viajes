@@ -1,5 +1,5 @@
 .backgroundProfile {
-  /*background-image: url('../images/homepage.jpg');*/
+  background-image: url('../images/profile.jpg');
   background-color: #cccccc;
   min-height: 100vh;
   height: auto;
@@ -10,10 +10,11 @@
   z-index: 99;
 }
 .recuadroProfile {
-  width: 1000%;
+  width: 80%;
   height: 80%;
   position: absolute;
-  background-color: white;
+  background-color:  rgb(156, 115, 61);
+  opacity: 75%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -39,14 +40,17 @@
   width: 30%;
   margin-bottom: 2rem;
   margin-top: 1rem;
-  border-radius: 10%;
+  border-radius: 50%;
   max-height: 5%;
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
 }
 .botonLogin {
   background-color: whitesmoke;
   font-weight: 100;
   width: 100%;
-  background-color: #1cb5e0;
+  background-color: #bee97a;
   transition: 0.5s ease-in;
 }
 .botonLogin:hover {
@@ -58,14 +62,7 @@ h1 {
   margin: 2rem;
   text-align: center;
 }
-.login .radio {
-  display: inline;
-  margin: 0;
-  width: 10%;
-  height: 1rem;
-  margin: 0.2rem;
-  margin-bottom: 1.5rem;
-}
+
 .login .radio2 {
   display: inline;
   margin: 0;
@@ -73,8 +70,12 @@ h1 {
   height: 1rem;
   margin: 0.2rem;
   margin-bottom: 1.5rem;
-  transform: translate(-20%, 20%);
+  margin-left: 0;
+  padding-left: 0;
+  margin-right: 1rem;
+  transform: translate(20%, 15%);
 }
+
 .forgot {
   display: block;
   margin-left: auto;
@@ -133,7 +134,7 @@ h1 {
 .panel {
   border-right: 1px solid rgba(0, 0, 0, 0.534);
   height: 100%;
-  width: 0%;
+  width: 30%;
 }
 Link {
   color: black;
@@ -202,9 +203,64 @@ textarea {
 h4:hover {
   cursor: pointer;
 }
+.star {
+  height: 2rem;
+  width: 2rem;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+}
+
 .fotoInput::-webkit-file-upload-button {
   font-size: 1rem;
   display: inline-flex;
+  display: none;
+  opacity: 0;
+}
+input[type='file'] {
+  display: none;
+}
+.parent {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  left: 0;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  border-radius: 50%;
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
+}
+
+.textEdit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+  border: 1px solid black;
+}
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+}
+.nameUser {
+  margin-top: 5rem;
+}
+.problema {
+  margin: 1rem;
+  margin-left: 0%;
+  margin-top: 0;
+  color: red;
 }
 @media screen and (max-width: 1300px) {
   .recuadroProfile {

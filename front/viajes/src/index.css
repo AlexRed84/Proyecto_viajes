@@ -103,7 +103,8 @@ nav .logo:hover {
   transform: translate(23%, 7%);
   box-shadow: -11px 15px 28px 0px rgba(0, 0, 0, 0.75);
   background: #e47e1fa2; /* fallback for old browsers */
-}
+  }
+  
 .square {
   transform: translate(0%, 5%);
 }
@@ -141,7 +142,7 @@ nav .logo:hover {
   background-color: #f1c47f;
 }
 .footer-content {
-  background-color: rgb(37, 33, 27);
+  background-color: rgb(5, 29, 7);
   min-height: 20vh;
   display: flex;
   text-align: center;

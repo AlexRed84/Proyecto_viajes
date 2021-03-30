@@ -2,19 +2,19 @@ import { useForm } from 'react-hook-form';
 import BackgroundVideo from './BackgroundVideo';
 
 export default function AuthForm(props) {
-  const { handleSubmit } = useForm();
+const { handleSubmit } = useForm();
 
-  const onSubmit = async (data) => {};
+const onSubmit = async (data) => {
+window.alert("Consulta Enviada");
+
+};
   return (
+    
     <div>
+    
       <div>
       <BackgroundVideo />
-        {/* <div className="back">
-          <div className="info">
-            <h1>Roling Road</h1>
-            <h2>...Rodando con los Sueños</h2>
-          </div>
-        </div> */}
+    
         <div className="formulario">
           <div className="formulario-square">
             <div className="square">
@@ -25,7 +25,8 @@ export default function AuthForm(props) {
                 <input id="email" name="email" placeholder="Escriba su email" />
                 <label htmlFor="mensaje">Mensaje</label>
                 <textarea htmlFor="textarea" rows="10" cols="40" placeholder="Escriba un comentario..."></textarea>
-                <input className="boton" type="submit" />
+                <input className="boton" type="submit"   />
+                
               </form>
             </div>
           </div>

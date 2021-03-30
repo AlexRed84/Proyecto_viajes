@@ -29,7 +29,7 @@ export default function Register(props) {
       <div className="recuadro">
         <div className="login">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <h1>Registrarse</h1>
+            <h1 className>Registrarse</h1>
             <a target="_blank" rel="noopener noreferrer" href="/register">
               <img src={profile} className="profile" alt="website logo" />
             </a>
@@ -45,14 +45,14 @@ export default function Register(props) {
               placeholder="Introduzca la contraseña"
               ref={register({ required: true, minLength: 8 })}
             />
-            <label htmlFor="confirmPassword">Confirma la contraseña</label>
+            {/* <label htmlFor="confirmPassword">Confirma la contraseña</label>
             <input
               id="confirmPassword"
               type="password"
               name="confirmPassword"
               placeholder="Confirme la contraseña"
               ref={register({ required: true, minLength: 8 })}
-            ></input>
+            ></input> */}
             <input className="botonLogin" type="submit" />
             <hr></hr>
             <Link className="registrado" to="/login">

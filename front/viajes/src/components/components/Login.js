@@ -40,14 +40,7 @@ export default function LoginForm(props) {
               placeholder="Introduzca la contraseña"
               ref={register({ required: true, minLength: 8 })}
             />
-            <label htmlFor="confirmPassword">Confirma la contraseña</label>
-            <input
-              id="confirmPassword"
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirme la contraseña"
-              ref={register({ required: true, minLength: 8 })}
-            ></input>
+            
             <label className="radio" htmlFor="cbox1">
               <input className="radio2" name="cbox1" type="checkbox" id="cbox1" ref={register()} />
               Recordar contraseña
