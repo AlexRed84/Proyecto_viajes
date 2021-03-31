@@ -60,7 +60,7 @@ export async function modifyRoute(id, id_route, data) {
   body.append('description', data.bio);
   body.append('category', data.category);
   body.append('photo', data.foto[0]);
-  const message = await fetchFormData(`/profile/${id}/all/${id_route}`, {
+  const message = await fetchFormData(`/profile/${id}/Rutas/${id_route}`, {
     method: requestMethods.put,
     body,
   });
@@ -69,7 +69,7 @@ export async function modifyRoute(id, id_route, data) {
 }
 export async function deleteRoute(id, id_route) {
   console.log(id, id_route);
-  const path = `/profile/${id}/all/${id_route}`;
+  const path = `/profile/${id}/Rutas/${id_route}`;
   console.log(path);
   await fetchb2bApi(path, {
     method: requestMethods.delete,
@@ -110,7 +110,7 @@ export async function newRoute(data, id) {
   body.append('name', data.name);
   body.append('category', data.category);
   body.append('photo', data.foto[0]);
-  return await fetchFormData(`/profile/${id}/newProduct`, {
+  return await fetchFormData(`/profile/${id}/newRoute`, {
     method: requestMethods.post,
     body,
   });

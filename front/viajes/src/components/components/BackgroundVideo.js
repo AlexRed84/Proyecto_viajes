@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './BackgroundVideo.module.css';
+import classes from '../../stylesPages/BackgroundVideo.module.css';
 
 const BackgroundVideo = () => {
     const videoSource = "/videos/road.mp4"
