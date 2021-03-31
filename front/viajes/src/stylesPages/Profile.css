@@ -1,5 +1,5 @@
 .backgroundProfile {
-  background-image: url('../images/profile.jpg');
+  background-image: url('../images/infoper.jpg');
   background-color: #cccccc;
   min-height: 100vh;
   height: auto;
@@ -14,7 +14,7 @@
   height: 80%;
   position: absolute;
   background-color:  rgb(156, 115, 61);
-  opacity: 75%;
+  opacity: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
