@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
+
 .Container {
     position: relative;
     max-height: 800px;
@@ -55,16 +57,17 @@
     border: #f1f1f1 1px solid;
   }
   span{
-  color: #dac614;
+  font-family: 'Train One', cursive; 
+  color: olive;
   font-weight:normal;
   font-size: 60px;
-  font-family: Arial;
   text-transform: uppercase;
+  
   }
   h2 {
-    color: #dac614;
+    color: olive;
     font-weight: normal;
     font-size: 25px;
-    font-family: Arial;
+    font-family: 'Train One', cursive; 
     text-transform: uppercase;
   }
