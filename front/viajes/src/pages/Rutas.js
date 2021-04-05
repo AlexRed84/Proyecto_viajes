@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import '../stylesPages/Rutas.css';
 
 const App = () => {
-const [data, setData] = useState(null)
+const [data, setData] = useState (null);
 
 
 useEffect(() => {
@@ -12,13 +12,15 @@ useEffect(() => {
 }, [])
 
 return (
+    <>
     <div>
     {data && data.data.map((item) => 
         <ul>
-        <li>{item.place}</li>
+        <li>{item.place} {item.date} {item.votes} {item.description}</li>
         </ul>
     )}
     </div>
+    </>
 )
 }
 

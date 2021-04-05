@@ -7,6 +7,8 @@ const endPoints = {
   registro: '/users/',
   recoverPass: '/users/recover-password',
   resetPass: '/users/reset-password',
+  updateInfo: '/users',
+  getRoute: '/entries',
 };
 async function fetchFormData(path, { body, method }) {
   let token = localStorage.getItem('token');
@@ -43,33 +45,33 @@ export async function updateInfo(data, id) {
   });
 }
 export async function getRoute() {
-  return await fetchb2bApi(`/rutas`, {
+  return await fetchb2bApi(`/entries`, {
     method: requestMethods.get,
   });
 }
 export async function getRouteInfo(id) {
-  const data = await fetchb2bApi(`/rutas/${id}`, {
+  const data = await fetchb2bApi(`/entries/${id}`, {
     method: requestMethods.get,
   });
   return data;
 }
-export async function modifyRoute(id, id_route, data) {
+export async function modifyRoute(id, data) {
   const body = new FormData();
   body.append('name', data.nombre);
   body.append('location', data.city);
   body.append('description', data.bio);
   body.append('category', data.category);
   body.append('photo', data.foto[0]);
-  const message = await fetchFormData(`/profile/${id}/Rutas/${id_route}`, {
+  const message = await fetchFormData(`/entries/${id}`, {
     method: requestMethods.put,
     body,
   });
   console.log(message);
   return message;
 }
-export async function deleteRoute(id, id_route) {
-  console.log(id, id_route);
-  const path = `/profile/${id}/Rutas/${id_route}`;
+export async function deleteRoute(id) {
+  console.log(id, );
+  const path = `/entries/${id}`;
   console.log(path);
   await fetchb2bApi(path, {
     method: requestMethods.delete,
@@ -91,7 +93,7 @@ export async function recover(email) {
   });
 }
 export async function getUserInfo(id) {
-  const userDat = await fetchb2bApi(`/profile/${id}/users`, {
+  const userDat = await fetchb2bApi(`/users/${id}`, {
     method: requestMethods.get,
   });
   return userDat;
@@ -110,13 +112,13 @@ export async function newRoute(data, id) {
   body.append('name', data.name);
   body.append('category', data.category);
   body.append('photo', data.foto[0]);
-  return await fetchFormData(`/profile/${id}/newRoute`, {
+  return await fetchb2bApi(`/entries/${id}`, {
     method: requestMethods.post,
     body,
   });
 }
 export async function getRoutePosted(id) {
-  const userDat = await fetchb2bApi(`/profile/${id}/entries`, {
+  const userDat = await fetchb2bApi(`/entries/${id}`, {
     method: requestMethods.get,
   });
   console.log(userDat);

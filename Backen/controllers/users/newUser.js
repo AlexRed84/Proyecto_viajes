@@ -15,13 +15,7 @@ const newUser = async (req, res, next) => {
 
         const {email, password} = req.body;
 
-        // //Compruebo que no esten vacios
-
-        // if(!email || !password) {
-        //     const error = new Error("Faltan campos");
-        //     error.httpStatus = 400;
-        //     throw error;
-        // }
+    
 
         //Compruebo que no exista un usuario con ese mail en la BBDD
 
@@ -51,7 +45,7 @@ const newUser = async (req, res, next) => {
 
         const emailBody = `
 
-        Te acabas de registrar en Roling Road. 
+        Te acabas de registrar en Rolling Road. 
         Pulsa en este link para validar tu email: ${process.env.PUBLIC_HOST}/users/validate/${registrationCode}
         `;
                 

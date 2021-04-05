@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <nav>
       <Link to="/" className="links logo">
-      Roling Road
+      Rolling Road
       </Link>
       <div className="rightSection">
         <Link to="/" className="links">

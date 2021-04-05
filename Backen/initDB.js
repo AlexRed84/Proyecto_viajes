@@ -99,52 +99,52 @@ async function main() {
 
              //introducimos varios usuarios aleatorios
 
-            const users = 10;
+          //   const users = 10;
 
-            for(let index = 0; index < users; index++) {
+          //   for(let index = 0; index < users; index++) {
 
-              const now = new Date();
-              const email = faker.internet.email();
-              const password = faker.internet.password();
-              const name = faker.name.findName();
+          //     const now = new Date();
+          //     const email = faker.internet.email();
+          //     const password = faker.internet.password();
+          //     const name = faker.name.findName();
 
-              await connection.query(`
-              INSERT INTO users(date, email, password, name, active)
-              VALUES("${formatDateToDB(now)}","${email}",SHA2("${password}",512),"${name}",true)
-              `);
-            }
+          //     await connection.query(`
+          //     INSERT INTO users(date, email, password, name, active)
+          //     VALUES("${formatDateToDB(now)}","${email}",SHA2("${password}",512),"${name}",true)
+          //     `);
+          //   }
 
-            //Introducir varias entradas
-          const entries =100;
+          //   //Introducir varias entradas
+          // const entries =100;
 
-          for (let index = 0; index < entries; index++){
-            const now = new Date();
+          // for (let index = 0; index < entries; index++){
+          //   const now = new Date();
 
-              await connection.query(`
-              INSERT INTO entries(date, place, description, user_id)
-              VALUES ("${formatDateToDB(now)}","${faker.address.city()}","${faker.lorem.paragraph()}", ${random(
-                2, 
-                users + 1
-                )})
-            `);
-            }
-            console.log("Datos de prueba introducidos en Entradas");
+          //     await connection.query(`
+          //     INSERT INTO entries(date, place, description, user_id)
+          //     VALUES ("${formatDateToDB(now)}","${faker.address.city()}","${faker.lorem.paragraph()}", ${random(
+          //       2, 
+          //       users + 1
+          //       )})
+          //   `);
+          //   }
+          //   console.log("Datos de prueba introducidos en Entradas");
 
           
-            // Introducir varios votos
-              const votes = 500;
+          //   // Introducir varios votos
+          //     const votes = 500;
 
-                for(let index = 0; index < votes; index++){
-                  const now = new Date();
+          //       for(let index = 0; index < votes; index++){
+          //         const now = new Date();
 
-                    await connection.query(
-                      `
-                        INSERT INTO entries_votes(date, vote, entry_id, user_id)
-                        VALUES("${formatDateToDB(now)}",${random(1, 5)},${random(1, entries)}, ${random(2, users + 1)})
+          //           await connection.query(
+          //             `
+          //               INSERT INTO entries_votes(date, vote, entry_id, user_id)
+          //               VALUES("${formatDateToDB(now)}",${random(1, 5)},${random(1, entries)}, ${random(2, users + 1)})
 
-                      `);
-                }
-                console.log("Datos de prueba introducidos en Entrada de Votos"); 
+          //             `);
+          //       }
+          //       console.log("Datos de prueba introducidos en Entrada de Votos"); 
 
     } catch (error) {
         console.error(error);

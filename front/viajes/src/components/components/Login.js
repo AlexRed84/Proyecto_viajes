@@ -6,6 +6,7 @@ export default function LoginForm(props) {
   const { register, handleSubmit } = useForm();
   const [errorMessage, setErrorMessage] = useState('');
   const [statusMessage, setstatusMessage] = useState('');
+  const [ passwordType, setPasswordType ] = useState('password');
 
   const onSubmit = async (data) => {
     try {
@@ -21,6 +22,11 @@ export default function LoginForm(props) {
     }
   };
 
+    const changeType = () => {
+      const newType = passwordType === 'password' ? 'text' : 'password';
+      setPasswordType(newType);
+    };
+
   return (
     <div className="background">
       <div className="recuadro">
@@ -35,16 +41,18 @@ export default function LoginForm(props) {
             <label htmlFor="password">Contraseña</label>
             <input
               id="password"
-              type="password"
+              type={passwordType}
               name="password"
               placeholder="Introduzca la contraseña"
               ref={register({ required: true, minLength: 8 })}
             />
-            
+            <button className="seePass" onClick={changeType}>Mostrar Contraseña</button>
+
             <label className="radio" htmlFor="cbox1">
               <input className="radio2" name="cbox1" type="checkbox" id="cbox1" ref={register()} />
               Recordar contraseña
             </label>
+            
             <input className="botonLogin" type="submit" />
             <hr></hr>
             <Link className="forgot" to="/recover">
@@ -56,6 +64,7 @@ export default function LoginForm(props) {
             {statusMessage.length > 0 && <p className="status-ok">{statusMessage}</p>}
             {errorMessage.length > 0 && <p className="error">{errorMessage}</p>}
           </form>
+          
         </div>
       </div>
     </div>

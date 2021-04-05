@@ -25,7 +25,7 @@ const listEntries =  async (req, res, next) => {
         if(search) {
             [results] = await connection.query (`
 
-            SELECT entries.id, entries.place, entries.date,entries.user_id, AVG(IFNULL(entries_votes.vote,0)) AS votes
+            SELECT entries.id, entries.description, entries.place, entries.date,entries.user_id, AVG(IFNULL(entries_votes.vote,0)) AS votes
             FROM entries 
             LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
             WHERE entries.place LIKE ? OR entries.description LIKE ?
@@ -40,7 +40,7 @@ const listEntries =  async (req, res, next) => {
             //leo las entradas de la base de datos
             [results] = await connection.query(`
 
-                SELECT entries.id, entries.place, entries.date,entries.user_id, AVG(IFNULL(entries_votes.vote,0)) AS votes
+                SELECT entries.id, entries.description, entries.place, entries.date,entries.user_id, AVG(IFNULL(entries_votes.vote,0)) AS votes
                 FROM entries 
                 LEFT JOIN entries_votes ON (entries.id = entries_votes.entry_id)
                 GROUP BY entries.id, entries.place, entries.date, entries.user_id

@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="footer-content">
         <h1>
           <a target="_blank" rel="noopener noreferrer" href="/">
-            Roling Road
+            Rolling Road
           </a>
         </h1>
         <div>

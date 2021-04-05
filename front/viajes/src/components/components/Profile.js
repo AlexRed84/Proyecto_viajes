@@ -58,7 +58,7 @@ export default function Profile(props) {
           <div className="dropdown alineado">
             <p className=" op2">☰</p>
             <div className="dropdown-content">
-              <Link to={`/profile/${userData?.id}`}>Información personal</Link>
+              <Link to={`/users/${userData?.id}`}>Información personal</Link>
               <Link to={`/profile/${userData?.id}/entries`}>Añadir Ruta</Link>
               <Link Link to={`/profile/${userData?.id}/users`}>
                 Productos publicados

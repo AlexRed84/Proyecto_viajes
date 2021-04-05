@@ -13,7 +13,7 @@ const BackgroundVideo = () => {
 
             <div className={classes.Content}>
                 <div className={classes.SubContent} >
-                <span >Roling Road</span>
+                <span >Rolling Road</span>
             <h2>...Rodando con los Sueños</h2>
                 </div>
             </div>

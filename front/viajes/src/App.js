@@ -22,54 +22,55 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home></Home>
-            <Footer></Footer>
+            
           </Route>
           <Route exact path="/login">
             <AuthLogged>
               <Login></Login>
-              <Footer></Footer>
+              
             </AuthLogged>
           </Route>
           <Route exact path="/register">
             <AuthLogged>
               <Register></Register>
-              <Footer></Footer>
+              
             </AuthLogged>
           </Route>
           <Route exact path="/recover">
             <AuthLogged>
               <Recover></Recover>
-              <Footer></Footer>
+              
             </AuthLogged>
           </Route>
           <Route exact path="/reset">
             <AuthLogged>
               <Reset></Reset>
-              <Footer></Footer>
+              
             </AuthLogged>
           </Route>
           <Route exact path="/users/:id">
             <AuthUser>
               <UserProfile>
                 <Profile></Profile>
-                <Footer></Footer>
+              
               </UserProfile>
             </AuthUser>
           </Route>
           <Route exact path="/profile/:id">
             <UserProfile>
               <Profile></Profile>
-                <Footer></Footer>
+              
               </UserProfile>
                 </Route>
           <Route exact path="/Rutas">
             <Rutas></Rutas>
-            <Footer></Footer>
+            
           </Route>
           <Route exact path="/users/validate/:id">
             <Validate></Validate>
           </Route>
         </Switch>
+        <Footer></Footer>
       </AuthProvider>
     </Router>
   );

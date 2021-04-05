@@ -16,7 +16,7 @@
 }
 .recuadro {
   width: 35%;
-  height: 70%;
+  height: 75%;
   position: absolute;
   background-color: rgb(156, 115, 61);
   opacity: 75%;
@@ -53,6 +53,17 @@
   margin-bottom: 0.5rem;
   width: 100%;
   font-weight: bold;
+}
+.login button {
+  display: block;
+  margin-bottom: 1rem;
+  width: 40%;
+  height: 1.5rem;
+  border: 1px solid rgb(255, 255, 255);
+  font-size: 0.7rem;
+  transition: 1s ease;
+  margin-left: auto;
+  margin-right: auto;
 }
 .profile {
   height: 2.5rem;
@@ -97,6 +108,16 @@ h1{
   margin: 0.2rem;
   margin-bottom: 1.5rem;
   transform: translate(-20%, 20%);
+}
+.seePass{
+  color:white;
+  display: inline;
+  margin: 0;
+  width: 10%;
+  height: 2rem;
+  margin: 0.2rem;
+  margin-bottom: 1rem;
+  
 }
 .forgot {
   display: block;
