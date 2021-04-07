@@ -12,14 +12,18 @@ useEffect(() => {
 }, [])
 
 return (
+    
     <>
-    <div>
+    
+    <div className='backgroundRutas'/>
+   
+
     {data && data.data.map((item) => 
-        <ul>
-        <li>{item.place} {item.date} {item.votes} {item.description}</li>
-        </ul>
+        <div className='caja'>
+        {item.place} {item.date} {item.votes} {item.description}
+        </div>
     )}
-    </div>
+    
     </>
 )
 }

@@ -45,7 +45,7 @@ export default function Register(props) {
               placeholder="Introduzca la contraseña"
               ref={register({ required: true, minLength: 8 })}
             />
-           
+          
             <input className="botonLogin" type="submit" />
             <hr></hr>
             <Link className="registrado" to="/login">

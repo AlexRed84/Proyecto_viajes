@@ -262,6 +262,8 @@ input[type='file'] {
   margin-top: 0;
   color: red;
 }
+
+
 @media screen and (max-width: 1300px) {
   .recuadroProfile {
     width: 90%;
