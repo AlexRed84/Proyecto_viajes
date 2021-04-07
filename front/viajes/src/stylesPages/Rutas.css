@@ -1,47 +1,30 @@
 
-.backgroundRutas{
+.cajarutas{
     background-image: url('../images/rutita.jpg');
     background-color: #cccccc;
     min-height: 100vh;
-    height: auto; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
-    display: block;
-    
+
+    padding: 100px 1rem 1rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 400px;
+    gap: 1rem;
     
 } 
 
 .caja { 
-    width: 36%;
-    height: 55%;
-    position: absolute;
     background-color: rgb(78, 99, 2);
     opacity: 75%;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     border: 1px solid black;
     box-shadow: -15px 5px 33px -2px rgba(0, 0, 0, 0.75);
-    z-index: 200;
 }
 
 
-@media screen and (max-width: 1300px) {
-    .caja {
-      width: 50%;
-    }
-  }
-  @media screen and (max-width: 874px) {
-    .caja {
-      width: 90%;
-      height: 75%;
-    }
-  }
-  @media screen and (max-width: 280px) {
-    .caja {
-      width: 95%;
-    }
+.caja img {
+  max-width: 100%;
 }
+
 

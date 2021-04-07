@@ -46,7 +46,7 @@ export default function LoginForm(props) {
               placeholder="Introduzca la contraseña"
               ref={register({ required: true, minLength: 8 })}
             />
-            <button className="seePass" onClick={changeType}>Mostrar Contraseña</button>
+            <button type="button" className="seePass" onClick={changeType}>Mostrar Contraseña</button>
 
             <label className="radio" htmlFor="cbox1">
               <input className="radio2" name="cbox1" type="checkbox" id="cbox1" ref={register()} />
