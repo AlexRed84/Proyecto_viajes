@@ -46,10 +46,10 @@ export default function Profile(props) {
           <Link>
             <p className="selected opcion">Información personal</p>
           </Link>
-          <Link to={`/profile/${userData?.id}/newRoute`}>
+          <Link to={`/profile${userData?.id}/newRoute`}>
             <p className="opcion">Añadir Ruta</p>
           </Link>
-         
+
           <Link to={`/profile/${userData?.id}/Rutas`}>
             <p className="opcion">Rutas Publicadas</p>
           </Link>
@@ -60,8 +60,8 @@ export default function Profile(props) {
             <div className="dropdown-content">
               <Link to={`/users/${userData?.id}`}>Información personal</Link>
               <Link to={`/entries/${userData?.id}`}>Añadir Ruta</Link>
-              <Link Link to={`/profile/${userData?.id}/users`}>
-                Productos publicados
+              <Link Link to={`/entries/${userData?.id}/users`}>
+                Rutas publicadas
               </Link>
             </div>
           </div>

@@ -34,7 +34,7 @@ export default function Register(props) {
               <img src={profile} className="profile" alt="website logo" />
             </a>
             <label htmlFor="name">Nombre</label>
-            <input id="name" name="name" placeholder="Introduzca el nombre" ref={register({ required: true })} /> 
+            <input id="name" name="name" placeholder="Introduzca el nombre" ref={register({ required: true })} />
             <label htmlFor="email">Email</label>
             <input id="email" name="email" placeholder="Introduzca el email" ref={register({ required: true })} />
             <label htmlFor="password">Contraseña</label>
@@ -45,7 +45,7 @@ export default function Register(props) {
               placeholder="Introduzca la contraseña"
               ref={register({ required: true, minLength: 8 })}
             />
-          
+
             <input className="botonLogin" type="submit" />
             <hr></hr>
             <Link className="registrado" to="/login">

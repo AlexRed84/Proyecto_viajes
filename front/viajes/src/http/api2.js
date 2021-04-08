@@ -9,6 +9,7 @@ const endPoints = {
   resetPass: '/users/reset-password',
   updateInfo: '/users',
   getRoute: '/entries',
+  newRoute: '/entries',
 };
 async function fetchFormData(path, { body, method }) {
   let token = localStorage.getItem('token');
@@ -70,17 +71,17 @@ export async function modifyRoute(id, data) {
   return message;
 }
 export async function deleteRoute(id) {
-  console.log(id, );
+  console.log(id);
   const path = `/entries/${id}`;
   console.log(path);
   await fetchb2bApi(path, {
     method: requestMethods.delete,
   });
 }
-export async function login(email, password,) {
+export async function login(email, password) {
   const tokenData = await fetchb2bApi(endPoints.login, {
     method: requestMethods.post,
-    body: { email, password, },
+    body: { email, password },
   });
   const token = tokenData.data.token;
   localStorage.setItem('token', token);
@@ -107,10 +108,8 @@ export async function validateUser(codigo) {
 }
 export async function newRoute(data, id) {
   const body = new FormData();
-  body.append('location', data.location);
+  body.append('place', data.place);
   body.append('description', data.description);
-  body.append('name', data.name);
-  body.append('category', data.category);
   body.append('photo', data.foto[0]);
   return await fetchb2bApi(`/entries/${id}`, {
     method: requestMethods.post,
@@ -141,15 +140,13 @@ export async function resetPass(recoverCode, newPassword, confirmPass) {
     },
   });
 }
-export async function signUpApi( email, password, confirmPassword) {
-  
+export async function signUpApi(email, password, confirmPassword) {
   return await fetchb2bApi(endPoints.registro, {
     method: requestMethods.post,
-    body: {  
+    body: {
       email,
       password,
-      confirmPassword },
-    
+      confirmPassword,
+    },
   });
-  
 }

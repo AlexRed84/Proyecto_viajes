@@ -1,29 +1,27 @@
 //const { query } = require('express');
 require("dotenv").config();
-const faker = require('faker');
-const { random } = require('lodash');
+const faker = require("faker");
+const { random } = require("lodash");
 const getDB = require("./db");
-const { formatDateToDB } = require('./helpers.js');
+const { formatDateToDB } = require("./helpers.js");
 
 let connection;
 
 async function main() {
-    try {
-      connection = await getDB();
+  try {
+    connection = await getDB();
 
-        //borrar tablas existentes
-      await connection.query("DROP TABLE IF EXISTS entries");
-      await connection.query("DROP TABLE IF EXISTS entries_photos");
-      await connection.query("DROP TABLE IF EXISTS entries_votes");
-      await connection.query("DROP TABLE IF EXISTS users");
-      
+    //borrar tablas existentes
+    await connection.query("DROP TABLE IF EXISTS entries");
+    await connection.query("DROP TABLE IF EXISTS entries_photos");
+    await connection.query("DROP TABLE IF EXISTS entries_votes");
+    await connection.query("DROP TABLE IF EXISTS users");
 
-      console.log("Tablas Borradas");
+    console.log("Tablas Borradas");
 
+    //tabla de usuarios
 
-      //tabla de usuarios
-
-      await connection.query(`
+    await connection.query(`
       CREATE TABLE users (
           id INT PRIMARY KEY AUTO_INCREMENT,
           date DATETIME NOT NULL,
@@ -41,9 +39,9 @@ async function main() {
       
       `);
 
-        //Tabla entradas
-        await connection.query(
-            `CREATE TABLE entries (
+    //Tabla entradas
+    await connection.query(
+      `CREATE TABLE entries (
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 date DATETIME NOT NULL,
                 place VARCHAR(100) NOT NULL,
@@ -51,10 +49,11 @@ async function main() {
                 user_id INT NOT NULL
             );
         
-        `);
+        `
+    );
 
-        // tabla entradas fotos
-        await connection.query(`
+    // tabla entradas fotos
+    await connection.query(`
               CREATE TABLE entries_photos (
                   id INT PRIMARY KEY AUTO_INCREMENT,
                   uploadDate DATETIME NOT NULL,
@@ -63,9 +62,8 @@ async function main() {
             );
         `);
 
-        
-        //tabla entradas votos
-        await connection.query(`
+    //tabla entradas votos
+    await connection.query(`
             CREATE TABLE entries_votes (
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 date DATETIME NOT NULL,
@@ -79,13 +77,12 @@ async function main() {
 
         `);
 
+    console.log("Nuevas tablas creadas");
 
-            console.log("Nuevas tablas creadas");
+    //Introducir datos iniciales de prueba
 
-            //Introducir datos iniciales de prueba
-
-            //introducir un usuario administrador
-            await connection.query(`
+    //introducir un usuario administrador
+    await connection.query(`
             INSERT INTO users(date, email, password, name, active, role)
             VALUES("${formatDateToDB(new Date())}",
             "laleandro@gmail.com",
@@ -95,64 +92,61 @@ async function main() {
             "admin");    
 
             `);
-            
 
-             //introducimos varios usuarios aleatorios
+    //introducimos varios usuarios aleatorios
 
-          //   const users = 10;
+    //   const users = 10;
 
-          //   for(let index = 0; index < users; index++) {
+    //   for(let index = 0; index < users; index++) {
 
-          //     const now = new Date();
-          //     const email = faker.internet.email();
-          //     const password = faker.internet.password();
-          //     const name = faker.name.findName();
+    //     const now = new Date();
+    //     const email = faker.internet.email();
+    //     const password = faker.internet.password();
+    //     const name = faker.name.findName();
 
-          //     await connection.query(`
-          //     INSERT INTO users(date, email, password, name, active)
-          //     VALUES("${formatDateToDB(now)}","${email}",SHA2("${password}",512),"${name}",true)
-          //     `);
-          //   }
+    //     await connection.query(`
+    //     INSERT INTO users(date, email, password, name, active)
+    //     VALUES("${formatDateToDB(now)}","${email}",SHA2("${password}",512),"${name}",true)
+    //     `);
+    //   }
 
-          //   //Introducir varias entradas
-          // const entries =100;
+    //   //Introducir varias entradas
+    // const entries =100;
 
-          // for (let index = 0; index < entries; index++){
-          //   const now = new Date();
+    // for (let index = 0; index < entries; index++){
+    //   const now = new Date();
 
-          //     await connection.query(`
-          //     INSERT INTO entries(date, place, description, user_id)
-          //     VALUES ("${formatDateToDB(now)}","${faker.address.city()}","${faker.lorem.paragraph()}", ${random(
-          //       2, 
-          //       users + 1
-          //       )})
-          //   `);
-          //   }
-          //   console.log("Datos de prueba introducidos en Entradas");
+    //     await connection.query(`
+    //     INSERT INTO entries(date, place, description, user_id)
+    //     VALUES ("${formatDateToDB(now)}","${faker.address.city()}","${faker.lorem.paragraph()}", ${random(
+    //       2,
+    //       users + 1
+    //       )})
+    //   `);
+    //   }
+    //   console.log("Datos de prueba introducidos en Entradas");
 
-          
-          //   // Introducir varios votos
-          //     const votes = 500;
+    //   // Introducir varios votos
+    //     const votes = 500;
 
-          //       for(let index = 0; index < votes; index++){
-          //         const now = new Date();
+    //       for(let index = 0; index < votes; index++){
+    //         const now = new Date();
 
-          //           await connection.query(
-          //             `
-          //               INSERT INTO entries_votes(date, vote, entry_id, user_id)
-          //               VALUES("${formatDateToDB(now)}",${random(1, 5)},${random(1, entries)}, ${random(2, users + 1)})
+    //           await connection.query(
+    //             `
+    //               INSERT INTO entries_votes(date, vote, entry_id, user_id)
+    //               VALUES("${formatDateToDB(now)}",${random(1, 5)},${random(1, entries)}, ${random(2, users + 1)})
 
-          //             `);
-          //       }
-          //       console.log("Datos de prueba introducidos en Entrada de Votos"); 
-
-    } catch (error) {
-        console.error(error);
-    } finally {
-        //libera la conexion
-      if(connection) connection.release();
-      process.exit();
-    }
+    //             `);
+    //       }
+    //       console.log("Datos de prueba introducidos en Entrada de Votos");
+  } catch (error) {
+    console.error(error);
+  } finally {
+    //libera la conexion
+    if (connection) connection.release();
+    process.exit();
+  }
 }
 
 main();
