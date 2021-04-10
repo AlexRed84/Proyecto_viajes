@@ -12,7 +12,7 @@ const newUser = async (req, res, next) => {
 
     //Recojo de req.body el email y la password
 
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
     console.log(req.body.name);
     //Compruebo que no exista un usuario con ese mail en la BBDD
 
@@ -52,10 +52,10 @@ const newUser = async (req, res, next) => {
 
     await connection.query(
       `
-            INSERT INTO users(name, email, password, registrationCode,date)
-            VALUES(?,?,SHA2(?, 512),?,?)
+            INSERT INTO users( email, password, registrationCode,date)
+            VALUES(?,SHA2(?, 512),?,?)
         `,
-      [name, email, password, registrationCode, new Date()]
+      [email, password, registrationCode, new Date()]
     );
 
     //Mando una respuesta

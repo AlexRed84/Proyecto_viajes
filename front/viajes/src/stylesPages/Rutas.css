@@ -24,7 +24,34 @@
 
 
 .caja img {
-  max-width: 100%;
+  max-width: 40%;
+  
 }
 
 
+
+.h1caja{
+  color:black;
+  text-align: initial;
+  
+
+}
+
+@media screen and (max-width: 700px) {
+  * {
+    font-size: 11px;
+  }
+}
+@media screen and (max-width: 280px) {
+  .caja {
+    width: 95%;
+  }
+}
+@media screen and (max-height: 600px) {
+  .caja {
+    overflow: scroll;
+  }
+  /* h4 {
+    margin-bottom: 2rem;
+  } */
+}

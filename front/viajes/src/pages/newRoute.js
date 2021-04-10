@@ -1,33 +1,50 @@
 import { newRoute } from '../http/api2';
-import '../stylesPages/newRoute.css';
 import React, { useEffect, useState } from 'react';
-import newRoute from '../components/components/newRoute';
+import { useForm } from 'react-hook-form';
+import '../stylesPages/newRoute.css';
 
 const NewRoute = () => {
   const [data, setData] = useState(null);
+  const { handleSubmit } = useForm();
 
   useEffect(() => {
     newRoute().then((data) => setData(data));
   }, []);
-
-  console.log(data);
+  const onSubmit = async (data) => {};
 
   return (
     <>
-      <div className="cajarutas">
-        {data &&
-          data.data.map((item) => {
-            return (
-              <>
-                <div className="caja" key={data.id}>
-                  {item.place} {item.date} {item.votes} {item.description}
-                  {item.photos.length > 0 ? (
-                    <img src={`http://localhost:3000/static/uploads/${item.photos[0].photo}`} alt={item.place} />
-                  ) : null}
+      <div className="backgroundnewroute">
+        <div className="recuadronewroute">
+          <div>
+            <div>
+              <div className="formularionewroute">
+                <div className="formularionewroute-square">
+                  <div className="squarenewroute">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                      <label htmlFor="place">Lugar</label>
+                      <input id="place" name="place" placeholder="Ubicaciòn" />
+                      <label htmlFor="bio">Descripción</label>
+                      <textarea
+                        htmlFor="textarea"
+                        rows="10"
+                        cols="40"
+                        id="description"
+                        defaultValue={data}
+                        name="bio"
+                        placeholder="Descripción"
+                        ref={newRoute()}
+                      ></textarea>
+                      <label htmlFor="photo">Foto</label>
+                      <input className="fotoInput" type="file" name="foto" id="foto" ref={useForm()} />
+                      <input className="boton" type="submit" />
+                    </form>
+                  </div>
                 </div>
-              </>
-            );
-          })}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

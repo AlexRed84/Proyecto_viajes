@@ -46,11 +46,11 @@ export default function Profile(props) {
           <Link>
             <p className="selected opcion">Información personal</p>
           </Link>
-          <Link to={`/profile${userData?.id}/newRoute`}>
+          <Link to={`/newRoute`}>
             <p className="opcion">Añadir Ruta</p>
           </Link>
 
-          <Link to={`/profile/${userData?.id}/Rutas`}>
+          <Link to={`/Rutas`}>
             <p className="opcion">Rutas Publicadas</p>
           </Link>
         </div>
@@ -71,7 +71,7 @@ export default function Profile(props) {
               {!profileData?.data?.photo && <img src={profile} className="profile" alt="website logo" />}
               {profileData?.data?.photo && (
                 <img
-                  src={`http://localhost:3000/uploads/${String.fromCharCode.apply(
+                  src={`http://localhost:3000/static/uploads/${String.fromCharCode.apply(
                     null,
                     profileData?.data?.photo?.data
                   )}`}

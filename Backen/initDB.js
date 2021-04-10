@@ -27,7 +27,7 @@ async function main() {
           date DATETIME NOT NULL,
           email VARCHAR(500) UNIQUE NOT NULL,
           password VARCHAR(512) NOT NULL,
-          name VARCHAR(100),
+          name VARCHAR(100) DEFAULT NULL,
           avatar VARCHAR(50),
           deleted BOOLEAN DEFAULT false,
           active BOOLEAN DEFAULT false,

@@ -14,6 +14,7 @@ import { AuthProvider } from './shared/context/authContext';
 import UserProfile from './components/security/UserProfile';
 import AuthLogged from './components/security/AuthLogged';
 import Validate from './pages/Validateuser';
+import NewRoute from './pages/newRoute';
 function App() {
   return (
     <Router>
@@ -59,8 +60,8 @@ function App() {
             <Rutas></Rutas>
           </Route>
 
-          <Route exact path="/profile/:id/newRoute">
-            <newRoute></newRoute>
+          <Route exact path="/newRoute">
+            <NewRoute></NewRoute>
           </Route>
 
           <Route exact path="/users/validate/:id">
