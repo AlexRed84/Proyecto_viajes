@@ -16,7 +16,7 @@
 } 
 
 .caja { 
-    background-color: rgb(78, 99, 2);
+    background-color: rgb(245, 222, 159);
     opacity: 75%;
     border: 1px solid black;
     box-shadow: -15px 5px 33px -2px rgba(0, 0, 0, 0.75);
@@ -36,6 +36,7 @@
   
 
 }
+
 
 @media screen and (max-width: 700px) {
   * {

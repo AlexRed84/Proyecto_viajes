@@ -38,7 +38,7 @@ export async function updateInfo(data, id) {
   const body = new FormData();
   body.append('name', data.nombre);
   body.append('email', data.email);
-  body.append('description', data.bio);
+  body.append('description', data.description);
   body.append('photo', data.foto[0]);
   return await fetchFormData(`/users/${id}`, {
     method: requestMethods.put,
@@ -106,15 +106,16 @@ export async function validateUser(codigo) {
   console.log(message);
   return message;
 }
-export async function newRoute(data) {
-  const body = new FormData();
-  body.append('place', data.place);
-  body.append('description', data.description);
-  body.append('photo', data.photo[0]);
-  return await fetchb2bApi(`/entries/`, {
-    method: requestMethods.post,
-  });
-}
+// export async function newRoute(data) {
+//   const body = new FormData();
+//   body.append('place', data.place);
+//   body.append('description', data.description);
+//   body.append('photo', data.photo[0]);
+//   return await fetchb2bApi(`/entries/`, {
+//     method: requestMethods.post,
+//     body: body,
+//   });
+// }
 export async function getRoutePosted(id) {
   const userDat = await fetchb2bApi(`/entries/${id}`, {
     method: requestMethods.get,

@@ -33,8 +33,8 @@ export default function Register(props) {
             <a target="_blank" rel="noopener noreferrer" href="/register">
               <img src={profile} className="profile" alt="website logo" />
             </a>
-            <label htmlFor="name">Nombre</label>
-            <input id="name" name="name" placeholder="Introduzca el nombre" ref={register({ required: true })} />
+            {/* <label htmlFor="name">Nombre</label>
+            <input id="name" name="name" placeholder="Introduzca el nombre" ref={register({ required: true })} /> */}
             <label htmlFor="email">Email</label>
             <input id="email" name="email" placeholder="Introduzca el email" ref={register({ required: true })} />
             <label htmlFor="password">Contraseña</label>

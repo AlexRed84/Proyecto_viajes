@@ -29,12 +29,12 @@ export function AuthProvider({ children }) {
   // Método para hacer log in desde los componentes
   const signIn = async (email, password, confirmPassword, remember) => {
     const loginData = await login(email, password, confirmPassword);
-    if (remember) {
-      localStorage.setItem('token', loginData);
-    } else {
-      sessionStorage.setItem('token', loginData);
-      localStorage.removeItem('token');
-    }
+    // if (remember) {
+    localStorage.setItem('token', loginData);
+    // } else {
+    //   sessionStorage.setItem('token', loginData);
+    //   localStorage.removeItem('token');
+    // }
     const tokenObject = decodeTokenData(loginData);
     setUserData(tokenObject);
     setIsUserLogged(true);
@@ -42,10 +42,9 @@ export function AuthProvider({ children }) {
   };
 
   // Método para registrarse
-  const signUp = async ( email, password, confirmPassword) => {
-    const message = await signUpApi( email, password, confirmPassword);
+  const signUp = async (email, password, confirmPassword) => {
+    const message = await signUpApi(email, password, confirmPassword);
     return message;
-    
   };
 
   // Método que borra las credenciales del localStorage y del state

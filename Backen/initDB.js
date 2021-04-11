@@ -45,7 +45,7 @@ async function main() {
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 date DATETIME NOT NULL,
                 place VARCHAR(100) NOT NULL,
-                description TEXT,
+                description TEXT DEFAULT NULL,
                 user_id INT NOT NULL
             );
         
@@ -95,7 +95,7 @@ async function main() {
 
     //introducimos varios usuarios aleatorios
 
-    //   const users = 10;
+    //   const users = 4;
 
     //   for(let index = 0; index < users; index++) {
 
@@ -111,7 +111,7 @@ async function main() {
     //   }
 
     //   //Introducir varias entradas
-    // const entries =100;
+    // const entries =5;
 
     // for (let index = 0; index < entries; index++){
     //   const now = new Date();
@@ -127,7 +127,7 @@ async function main() {
     //   console.log("Datos de prueba introducidos en Entradas");
 
     //   // Introducir varios votos
-    //     const votes = 500;
+    //     const votes = 50;
 
     //       for(let index = 0; index < votes; index++){
     //         const now = new Date();

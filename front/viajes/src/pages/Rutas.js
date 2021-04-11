@@ -9,7 +9,6 @@ const App = () => {
     getListEntries().then((data) => setData(data));
   }, []);
 
- 
   return (
     <>
       <div className="cajarutas">
@@ -18,11 +17,14 @@ const App = () => {
             return (
               <>
                 <div className="caja" key={data.id}>
-                  {/* <h3 className="h3caja">{item.date} </h3> */}
-                  <h2 className="h2caja">{item.votes}</h2> <h1 className="h1caja">{item.description}</h1>
+                  <h1 className="h1place">{item.place}</h1>
+
+                  <h1 className="h1caja">{item.description}</h1>
                   {item.photos.length > 0 ? (
                     <img src={`http://localhost:3000/uploads/${item.photos[0].photo}`} alt={item.place} />
                   ) : null}
+                  {/* <h2 className="h2caja">{item.votes}</h2> */}
+                  <h5 className="h5caja">{item.date} </h5>
                 </div>
               </>
             );

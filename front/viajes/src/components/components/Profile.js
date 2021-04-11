@@ -96,7 +96,7 @@ export default function Profile(props) {
                 placeholder="Introduzca el email"
                 ref={register({ required: true })}
               />
-              <label htmlFor="bio">Bio</label>
+              <label htmlFor="bio">Descripción</label>
               <textarea
                 htmlFor="textarea"
                 rows="10"
