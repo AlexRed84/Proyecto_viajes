@@ -19,12 +19,18 @@ const App = () => {
                 <div className="caja" key={data.id}>
                   <h1 className="h1place">{item.place}</h1>
 
-                  <h1 className="h1caja">{item.description}</h1>
+                  <h3 className="h3caja">{item.description}</h3>
                   {item.photos.length > 0 ? (
-                    <img src={`http://localhost:3000/uploads/${item.photos[0].photo}`} alt={item.place} />
+                    <img
+                      classname="imgcaja"
+                      src={`http://localhost:3000/uploads/${item.photos[0].photo}`}
+                      alt={item.place}
+                    />
                   ) : null}
+
                   {/* <h2 className="h2caja">{item.votes}</h2> */}
                   <h5 className="h5caja">{item.date} </h5>
+
                   <div class="ec-stars-wrapper">
                     <a href="#" data-value="1" title="Votar con 1 estrellas">
                       &#9733;

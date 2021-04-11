@@ -10,7 +10,7 @@
     padding: 100px 1rem 1rem 1rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: 400px;
+    grid-auto-rows: 600px;
     gap: 1rem;
     
 } 
@@ -18,21 +18,43 @@
 .caja { 
     background-color: rgb(245, 222, 159);
     opacity: 75%;
-    border: 1px solid black;
+    border: 3px solid black;
     box-shadow: -15px 5px 33px -2px rgba(0, 0, 0, 0.75);
+    transition: transform 0.2s;
+    
+}
+.caja:hover{
+  
+  transform: scale(1.1);
+
 }
 
 
 .caja img {
-  max-width: 40%;
+  max-width: 50%;
+  min-height: 2vh;
+  display: block;
+  text-align: center;
+  padding: auto;
+  margin:5rem;
+  
+}
+.caja img:hover{
+  transform: scale(1.8);
+  padding: auto;
   
 }
 
+.h1place{
+  color: blue;
+  text-align: center;
+}
 
-
-.h1caja{
-  color:black;
-  text-align: initial;
+.h3caja{
+  color:black(146, 203, 236);
+  text-align: center;
+  
+  
   
 
 }
@@ -46,7 +68,8 @@
 		pero de esta manera (siempre que no le demos padding), 
 		sólo aplicará la regla .ec-stars-wrapper:hover a cuando
 		también se esté haciendo hover a alguna estrella */
-	display: inline-block;
+    width: 200px;
+    margin: 0 auto;
 }
 .ec-stars-wrapper a {
 	text-decoration: none;
@@ -56,16 +79,23 @@
 	font-size: 2rem;
 	
 	color: #888;
+  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+  
+  
 }
 
 .ec-stars-wrapper:hover a {
 	color: rgb(39, 130, 228);
+  text-align: right;
 }
 /*
  * El selector de hijo, es necesario para aumentar la especifidad
  */
 .ec-stars-wrapper > a:hover ~ a {
 	color: #888;
+  text-align: right;
 }
 
 

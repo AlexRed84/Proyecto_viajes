@@ -80,8 +80,10 @@ export default function NewRoute(data) {
                         placeholder="Descripción"
                         ref={register}
                       ></textarea>
-                      <label htmlFor="photo">Añadir Foto</label>
-                      <input className="photoInput" type="file" id="photo" name="photo" ref={register} />
+                      <label className="inputfile" htmlFor="photo">
+                        Añadir Foto
+                      </label>
+                      <input className="inputfile" type="file" id="photo" name="photo" ref={register} />
                       <br></br>
                       <input className="boton" type="submit" />
                     </form>
